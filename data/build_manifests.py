@@ -239,9 +239,55 @@ def stage_yolo_local(root: Path):
     print(f"Wrote {out / 'ripvis.yaml'}")
 
 
+# ---------------------------------------------------------------- summary
+def stage_summary():
+    """Print the README counts table and data checks; write the PDF checklist to fill in."""
+    videos = pd.read_csv(MANIFESTS / "videos.csv")
+    frames = pd.read_csv(MANIFESTS / "frames_all.csv").merge(videos[["video_id", "split"]], on="video_id")
+    single = set((MANIFESTS / "single_rip_val.txt").read_text().split())
+
+    def row(name, vid_mask, frame_mask):
+        v, f = videos[vid_mask], frames[frame_mask]
+        return (f"| {name} | {len(v)} ({int(v.has_rip.sum())} / {int((~v.has_rip).sum())}) "
+                f"| {len(f):,} | {int(f.n_gt.sum()):,} |")
+
+    print("## Final counts (paste into data/README.md)\n")
+    print("| Set | Videos (rip / no-rip) | Annotated frames | Masks |\n|---|---|---|---|")
+    for s, label in (("train", "Train"), ("dev", "Dev"), ("val", "Final val")):
+        print(row(label, videos.split == s, frames.split == s))
+    print(row("Single-rip val", videos.video_id.isin(single), frames.video_id.isin(single)))
+    print(row("Val excluded (frame mismatch)", videos.split == "val_excluded", frames.split == "val_excluded"))
+
+    print("\n## Dev videos\n")
+    print(", ".join((MANIFESTS / "dev_videos.txt").read_text().split()))
+    print("\n## Single-rip val videos\n")
+    print(", ".join(sorted(single)))
+
+    dv = videos[videos.split.isin(["dev", "val"])]
+    print("\n## Data checks\n")
+    print(f"- fps range: {dv.fps.min():.2f} to {dv.fps.max():.2f}")
+    print(f"- sampling rate (Hz): {dv.sampling_rate.round(2).value_counts().sort_index().to_dict()}")
+    print(f"- resolutions: {dv.groupby(['width', 'height']).size().to_dict()}")
+    bad = dv[dv.last_frame_ok == False]  # noqa: E712
+    print(f"- annotated frame past video end: {list(bad.video_id) or 'none'}")
+    odd = dv[(dv.sampling_rate < 1) | (dv.sampling_rate > 15)]
+    print(f"- unusual sampling rate (<1 or >15 Hz): {list(odd.video_id) or 'none'}")
+
+    check = videos[videos.split.eq("dev") | videos.video_id.isin(single)][
+        ["video_id", "split", "max_rips_per_frame", "fps", "sampling_rate"]].copy()
+    check["pdf_fps"] = ""
+    check["pdf_sampling_rate"] = ""
+    check["pdf_source_or_location"] = ""
+    check["pdf_rip_count"] = ""
+    check["notes"] = ""
+    out = MANIFESTS / "pdf_check.csv"
+    check.sort_values(["split", "video_id"]).to_csv(out, index=False)
+    print(f"\nWrote {out.name} ({len(check)} rows) - fill the pdf_* columns from the dataset info PDF.")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("stage", choices=["inventory", "split", "meta", "finalize", "yolo-local"])
+    ap.add_argument("stage", choices=["inventory", "split", "meta", "finalize", "yolo-local", "summary"])
     ap.add_argument("--root", help="override ripvis_root from configs/paths.yaml")
     ap.add_argument("--force", action="store_true", help="re-draw the dev split (team decision only)")
     a = ap.parse_args()
@@ -253,8 +299,10 @@ def main():
         stage_meta(ripvis_root(a.root))
     elif a.stage == "finalize":
         stage_finalize()
-    else:
+    elif a.stage == "yolo-local":
         stage_yolo_local(ripvis_root(a.root))
+    else:
+        stage_summary()
 
 
 if __name__ == "__main__":

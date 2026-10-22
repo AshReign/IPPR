@@ -38,7 +38,9 @@ EXPECTED = {
 }
 DEV_MULTI, DEV_SINGLE, DEV_NORIP = 7, 7, 3
 
-NAME = re.compile(r"(RipVIS-(?:NR-)?\d{3})_(\d{5})")
+# Readme says 3-digit video and 5-digit frame numbers, but some files differ
+# (e.g. RipVIS-035_0005.jpg), so accept any width and normalise the video ID to 3 digits.
+NAME = re.compile(r"(RipVIS-(?:NR-)?)(\d+)_(\d+)")
 
 
 def ripvis_root(arg):
@@ -55,11 +57,12 @@ def frames_table(coco_path: Path, split: str) -> pd.DataFrame:
     masks_per_image = pd.Series([a["image_id"] for a in coco["annotations"]], dtype="int64").value_counts()
     rows = []
     for im in coco["images"]:
-        m = NAME.search(im["file_name"])
+        base = Path(im["file_name"]).name
+        m = NAME.search(base)
         if m is None:
             raise ValueError(f"Unexpected file name: {im['file_name']}")
-        base = Path(im["file_name"]).name
-        rows.append(dict(source_split=split, video_id=m.group(1), frame_idx=int(m.group(2)),
+        video_id = f"{m.group(1)}{int(m.group(2)):03d}"
+        rows.append(dict(source_split=split, video_id=video_id, frame_idx=int(m.group(3)),
                          image_id=im["id"], image_rel=f"{split}/images/{base}",
                          n_gt=int(masks_per_image.get(im["id"], 0))))
     return pd.DataFrame(rows).sort_values(["video_id", "frame_idx"]).reset_index(drop=True)

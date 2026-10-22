@@ -1,15 +1,15 @@
 # core
-numpy
-pandas
-scipy
-scikit-image
-opencv-python
-pycocotools
-pyyaml
-tqdm
-matplotlib
-huggingface_hub
-# model (torch is installed separately, see below)
-ultralytics
+numpy==2.5.4
+pandas==3.0.6
+scipy==1.18.1
+scikit-image==0.26.0
+opencv-python==5.0.0.93
+pycocotools==2.0.11
+PyYAML==6.0.3
+tqdm==4.70.1
+matplotlib==3.11.2
+huggingface_hub==2.2.0
+# model (install torch separately for your machine; tested with torch 2.14.1 / torchvision 0.29.1)
+ultralytics==8.4.183
 # testing
-pytest
+pytest==9.1.1

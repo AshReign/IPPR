@@ -1,0 +1,15 @@
+# core
+numpy
+pandas
+scipy
+scikit-image
+opencv-python
+pycocotools
+pyyaml
+tqdm
+matplotlib
+huggingface_hub
+# model (torch is installed separately, see below)
+ultralytics
+# testing
+pytest

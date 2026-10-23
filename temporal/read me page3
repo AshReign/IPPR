@@ -1,0 +1,191 @@
+# Package 3 — Temporal Consistency Aggregation (TCA)
+
+## 1. Overview
+
+This package implements Temporal Consistency Aggregation (TCA) for the Rip Current Detection project.
+
+TCA processes frame-level soft segmentation masks to improve temporal consistency, maintain instance identities, and reduce short-lived detections.
+
+The implementation is designed to integrate with Package 2's soft-mask cache and Package 4's T2 parameter-tuning pipeline.
+
+## 2. Features
+
+- Multi-instance tracking using Hungarian assignment and IoU matching
+- Per-track temporal heatmap aggregation using an exponential moving average (EMA)
+- Time-based presence, absence, and track timeout handling
+- Gaussian smoothing and hysteresis thresholding
+- Support for timestamps in seconds
+- Per-video state reset
+- COCO-like uncompressed RLE output for annotated frames
+- Synthetic unit tests and performance profiling
+
+## 3. Project Files
+
+| File | Description |
+|---|---|
+| `temporal/tca.py` | Core TCA implementation and `run_tca()` interface |
+| `tests/test_tca.py` | TCA unit tests |
+| `scripts/profile_tca.py` | Synthetic performance profiling |
+| `scripts/compare_tca.py` | TCA comparison script |
+| `p3_pilot_integration.py` | Integration testing with Package 2's SQLite pilot cache |
+| `report/tca_spec.md` | Technical specification and implementation notes |
+
+## 4. Dependencies
+
+The TCA implementation uses Python and scientific computing libraries, including NumPy, SciPy, and scikit-image.
+
+Install the required libraries:
+
+```bash
+python3 -m pip install numpy scipy scikit-image pytest
+```
+
+Additional dependencies may be required by the integration and comparison scripts.
+
+## 5. Running Unit Tests
+
+From the project root directory:
+
+```bash
+python3 -m pytest tests/ -v
+```
+
+Latest verified result:
+
+```text
+25 passed
+```
+
+This includes 14 TCA tests and 11 temporal-metrics tests.
+
+## 6. Performance Profiling
+
+Run the synthetic performance profiler:
+
+```bash
+python3 -m scripts.profile_tca --frames 120 --height 360 --width 640 --fps 30
+```
+
+Example measured result:
+
+```text
+Frames: 120
+Total: 0.037 s
+Average: 0.309 ms/frame
+```
+
+This measures synthetic TCA processing, not complete model inference or end-to-end video processing.
+
+## 7. Package 4 Integration
+
+The main interface is:
+
+```python
+from temporal.tca import run_tca
+
+results = run_tca(video_cache, params)
+```
+
+### Supported Parameters
+
+```python
+params = {
+    "tau": 1.0,
+    "present_dur": 0.3,
+    "absence_dur": 1.0,
+    "timeout": 2.0,
+    "high": 0.5,
+    "low": 0.3,
+    "iou_thr": 0.3,
+    "sigma_px": 2.0
+}
+```
+
+All temporal parameters are expressed in seconds.
+
+The `run_tca()` interface maps `iou_thr` to `iou_threshold` and `sigma_px` to `sigma`.
+
+### Expected Input Format
+
+The function expects an iterable of frame dictionaries:
+
+```python
+{
+    "t_sec": 0.033,
+    "detections": [soft_mask_1, soft_mask_2],
+    "annotated": True,
+    "image_id": 123
+}
+```
+
+Each detection is a 2D soft-mask array. All frames should be processed in timestamp order, including frames without detections.
+
+### Output Format
+
+The function returns a list of prediction dictionaries for annotated frames:
+
+```python
+{
+    "image_id": 123,
+    "category_id": 1,
+    "segmentation": {
+        "size": [height, width],
+        "counts": [...]
+    },
+    "score": 1.0,
+    "track_id": 1
+}
+```
+
+The segmentation uses uncompressed RLE.
+
+**Note:** The current interface uses the supplied mask resolution. Compatibility with the final Package 5 evaluator, including original-image resolution requirements, must be confirmed.
+
+## 8. Package 2 Pilot Integration
+
+The integration script supports Package 2's SQLite pilot cache.
+
+Example:
+
+```bash
+python3 p3_pilot_integration.py --p2-dir /path/to/P2_pilot_cache --video RipVIS-071 --max-frames 0
+```
+
+The `--max-frames 0` option processes the complete video.
+
+### Pilot Integration Results
+
+| Video | Frames | Input Candidates | Frames with TCA Output | Average Time |
+|---|---:|---:|---:|---:|
+| RipVIS-071 | 277 | 1,768 | 254 | 4.769 ms/frame |
+| RipVIS-140 | 452 | 335 | 199 | 1.297 ms/frame |
+| RipVIS-NR-012 | 269 | 1,053 | 223 | 8.376 ms/frame |
+| **Total** | **998** | **3,156** | **676** | **4.169 ms/frame** |
+
+Timing includes SQLite reading and TCA processing, but excludes model inference and video decoding.
+
+These are preliminary integration results, not official segmentation accuracy or false-positive metrics.
+
+## 9. Current Integration Status
+
+Completed:
+
+- Core TCA implementation
+- Synthetic unit tests
+- Performance profiling
+- Initial integration with Package 2's SQLite pilot cache
+- Compatibility check for Package 4's eight parameter names
+
+Pending verification:
+
+- Direct integration with Package 4's T2 tuning runner
+- Final COCO RLE and image-resolution compatibility with Package 5
+- Evaluation using final model predictions and official metrics
+
+## 10. GitHub Branch
+
+Development branch: `package3-tca`
+
+Repository: https://github.com/AshReign/IPPR
+
+Package 4 and Package 5 contributors can use this branch for integration testing.

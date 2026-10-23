@@ -1,0 +1,99 @@
+{
+  "cache_dir": "IPPR_P2_Pilot_Epoch1_v2_EN_20261023_r1",
+  "videos": [
+    "RipVIS-071",
+    "RipVIS-140",
+    "RipVIS-NR-012"
+  ],
+  "n_frames": 111,
+  "n_gt": 170,
+  "runs": [
+    {
+      "conf_thr": 0.1,
+      "n_pred": 489,
+      "ours": {
+        "precision": 0.08997955010224949,
+        "recall": 0.25882352941176473,
+        "f1": 0.13353566009104703,
+        "f2": 0.18819503849443972,
+        "tp": 44,
+        "fp": 445,
+        "fn": 126,
+        "false_alarm_rate": 0.9777777777777777,
+        "n_frames": 111,
+        "n_no_rip_frames": 45
+      },
+      "seconds_ours": 0.006,
+      "official": {
+        "precision": 0.08997955010224949,
+        "recall": 0.25882352941176473,
+        "f1": 0.13353566009104703,
+        "f2": 0.18819503849443972
+      },
+      "seconds_official": 3.045,
+      "identical": true
+    },
+    {
+      "conf_thr": 0.25,
+      "n_pred": 61,
+      "ours": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "f2": 0.0,
+        "tp": 0,
+        "fp": 61,
+        "fn": 170,
+        "false_alarm_rate": 0.4222222222222222,
+        "n_frames": 111,
+        "n_no_rip_frames": 45
+      },
+      "seconds_ours": 0.003,
+      "official": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "f2": 0.0
+      },
+      "seconds_official": 0.514,
+      "identical": true
+    },
+    {
+      "conf_thr": 0.5,
+      "n_pred": 0,
+      "ours": {
+        "precision": 1.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "f2": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 170,
+        "false_alarm_rate": 0.0,
+        "n_frames": 111,
+        "n_no_rip_frames": 45
+      },
+      "seconds_ours": 0.002
+    }
+  ],
+  "restore_check": {
+    "n_instances": 489,
+    "n_fallback": 0,
+    "iou_min": 0.7060518731988472,
+    "iou_p5": 0.8830870873871286,
+    "iou_median": 0.9500813890396094,
+    "share_iou_ge_0.98": 0.15950920245398773,
+    "t0_conf0.1_exact_restore": {
+      "precision": 0.08997955010224949,
+      "recall": 0.25882352941176473,
+      "f1": 0.13353566009104703,
+      "f2": 0.18819503849443972,
+      "tp": 44,
+      "fp": 445,
+      "fn": 126,
+      "false_alarm_rate": 0.9777777777777777,
+      "n_frames": 111,
+      "n_no_rip_frames": 45
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# Package 4 dev search space (A2 Technical Task Packages, Package 4 step 4).
+# Fixed before tuning. Do not edit after the search has started.
+
+seed: 2026            # fixes the T2 random sample
+min_area_frac: 0.001  # shared output filter: drop components < 0.1 % of the frame
+
+t1:
+  windows_s: [0.5, 1.0, 2.0, 4.0]
+  theta: {start: 0.05, stop: 0.95, step: 0.05}   # 19 values x 4 windows = 76 configs
+
+t2:
+  n_configs: 20
+  # Combined A1 Table 4.1 ranges. tau is sampled log-uniformly, the rest uniformly.
+  tau: [0.1, 3.0]
+  present_dur: [0.0, 1.0]
+  absence_dur: [0.2, 3.0]
+  timeout: [0.5, 5.0]
+  high: [0.4, 0.7]
+  low: [0.2, 0.4]       # resampled until low < high
+  iou_thr: 0.3          # fixed
+  sigma_px: 2.0         # fixed Gaussian sigma at working resolution
+  # Parameter names must match Package 3's run_tca(video_cache, params).

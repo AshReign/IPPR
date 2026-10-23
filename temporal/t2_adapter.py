@@ -8,7 +8,7 @@ Package 3's interface (branch ``package3-tca``, temporal/tca.py)::
     results: uncompressed RLE at the working resolution, score 1.0
 
 The adapter feeds it the same candidate pool T0 and T1 see, then applies the
-shared 0.1 % area filter and upsamples to the original resolution, so all three
+upsamples to the original resolution and applies the shared 0.1 % area filter there, so all three
 conditions reach the evaluator in exactly the same form.
 """
 
@@ -20,7 +20,7 @@ import numpy as np
 from pycocotools import mask as mask_utils
 
 from .cache_io import VideoCache
-from .common import DEFAULT_MIN_AREA_FRAC, encode_result, passes_area_filter
+from .common import DEFAULT_MIN_AREA_FRAC, encode_result
 
 # Keys owned by Package 4; everything else is passed to run_tca unchanged.
 _P4_KEYS = {"min_area_frac"}
@@ -49,7 +49,8 @@ def run_t2(cache: VideoCache, params: dict, run_tca: Callable) -> list[dict]:
     tca_params = {k: v for k, v in params.items() if k not in _P4_KEYS}
     results = []
     for res in run_tca(to_p3_frames(cache), tca_params):
-        mask = _decode(res["segmentation"])
-        if passes_area_filter(mask, min_area):
-            results.append(encode_result(mask, res["image_id"], cache.orig_size))
+        entry = encode_result(_decode(res["segmentation"]), res["image_id"],
+                              cache.orig_size, min_area)
+        if entry is not None:
+            results.append(entry)
     return results

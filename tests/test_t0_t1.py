@@ -99,7 +99,7 @@ def test_t1_uses_8_connectivity():
     m = np.zeros((10, 10), np.float32)
     m[2:5, 2:5] = 1
     m[5:8, 5:8] = 1                                  # touches only diagonally
-    assert len(components(m, 0.5, 0.0)) == 1
+    assert len(components(m, 0.5)) == 1
 
 
 def test_t1_sweep_matches_individual_runs():
@@ -128,3 +128,13 @@ def test_area_filter_drops_tiny_components():
     assert not passes_area_filter(tiny, 0.001)
     tiny[0:2, 0:10] = True                           # 20 px = 0.2 %
     assert passes_area_filter(tiny, 0.001)
+
+
+def test_area_filter_is_applied_at_original_resolution():
+    from temporal.common import encode_result
+    work = np.zeros((10, 10), bool)
+    work[0, 0] = True                                # 1 % of the working frame
+    assert encode_result(work, 1, (100, 100), 0.001) is not None
+    assert encode_result(work, 1, (100, 100), 0.02) is None     # ~1 % < 2 %
+    entry = encode_result(work, 1, (100, 100), 0.0)
+    assert entry["segmentation"]["size"] == [100, 100]          # original resolution

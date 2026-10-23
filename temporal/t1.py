@@ -27,7 +27,7 @@ import numpy as np
 from skimage.measure import label
 
 from .cache_io import VideoCache
-from .common import DEFAULT_MIN_AREA_FRAC, masks_to_results, passes_area_filter
+from .common import DEFAULT_MIN_AREA_FRAC, masks_to_results
 
 
 def merged_map(frame, work_size: tuple[int, int]) -> np.ndarray:
@@ -64,12 +64,11 @@ def iter_window_means(cache: VideoCache, window_s: float
             yield frame, (running / len(buffer)).astype(np.float32)
 
 
-def components(mean_map: np.ndarray, theta: float,
-               min_area_frac: float) -> list[np.ndarray]:
-    """Threshold a window mean and split it into 8-connected components."""
-    labels = label(mean_map >= theta, connectivity=2)  # connectivity=2 -> 8-neighbour
-    masks = [labels == k for k in range(1, labels.max() + 1)]
-    return [m for m in masks if passes_area_filter(m, min_area_frac)]
+def components(mean_map: np.ndarray, theta: float) -> list[np.ndarray]:
+    """Threshold a window mean (mean > theta) and split it into 8-connected
+    components. The area filter is applied later, at original resolution."""
+    labels = label(mean_map > theta, connectivity=2)   # connectivity=2 -> 8-neighbour
+    return [labels == k for k in range(1, labels.max() + 1)]
 
 
 def run_t1(cache: VideoCache, params: dict) -> list[dict]:
@@ -86,8 +85,8 @@ def run_t1(cache: VideoCache, params: dict) -> list[dict]:
 
     results: list[dict] = []
     for frame, mean in iter_window_means(cache, window_s):
-        results.extend(masks_to_results(components(mean, theta, min_area),
-                                        cache, frame.image_id))
+        results.extend(masks_to_results(components(mean, theta), cache,
+                                        frame.image_id, min_area))
     return results
 
 
@@ -104,5 +103,5 @@ def run_t1_theta_sweep(cache: VideoCache, window_s: float, thetas: list[float],
     for frame, mean in iter_window_means(cache, window_s):
         for theta in thetas:
             out[theta].extend(masks_to_results(
-                components(mean, theta, min_area_frac), cache, frame.image_id))
+                components(mean, theta), cache, frame.image_id, min_area_frac))
     return out

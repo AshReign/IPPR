@@ -7,7 +7,7 @@ chosen on dev by Package 2) and binarise each soft mask at 0.5.
 from __future__ import annotations
 
 from .cache_io import VideoCache
-from .common import DEFAULT_MIN_AREA_FRAC, masks_to_results, passes_area_filter
+from .common import DEFAULT_MIN_AREA_FRAC, masks_to_results
 
 
 def run_t0(cache: VideoCache, params: dict) -> list[dict]:
@@ -27,6 +27,5 @@ def run_t0(cache: VideoCache, params: dict) -> list[dict]:
         kept = sorted((i for i in frame.instances if i.conf >= conf_thr),
                       key=lambda i: -i.conf)
         masks = [inst.soft_mask > 0.5 for inst in kept]
-        masks = [m for m in masks if passes_area_filter(m, min_area)]
-        results.extend(masks_to_results(masks, cache, frame.image_id))
+        results.extend(masks_to_results(masks, cache, frame.image_id, min_area))
     return results

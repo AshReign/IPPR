@@ -13,7 +13,7 @@ from eval.interim_scoring import Counts, match_image, metrics, parse_file_name
 from scripts.make_synthetic_cache import make_dataset
 from scripts.select_configs import freeze
 from scripts.tune_dev import main as tune_main
-from temporal.search import load_search_space, t1_configs, t2_configs
+from temporal.search import load_search_space, t0_configs, t1_configs, t2_configs
 from temporal.selection import select
 
 SPACE = Path(__file__).resolve().parents[1] / "configs" / "search_space.yaml"
@@ -64,6 +64,7 @@ def test_parse_file_name():
 # ---------------------------------------------------------------- search space
 def test_search_space_sizes_and_determinism():
     space = load_search_space(str(SPACE))
+    assert len(t0_configs(space)) == 17
     assert len(t1_configs(space)) == 76
     a, b = t2_configs(space), t2_configs(space)
     assert len(a) == 20 and a == b                                # fixed seed
@@ -78,6 +79,12 @@ def _df(rows):
     return pd.DataFrame(rows, columns=["config_id", "condition", "recall", "f2"])
 
 
+def _dfp(rows):
+    """Rows with a JSON params column, as written by the runner."""
+    return pd.DataFrame([[c, k, r, f, json.dumps(p)] for c, k, r, f, p in rows],
+                        columns=["config_id", "condition", "recall", "f2", "params"])
+
+
 def test_selection_prefers_f2_among_configs_reaching_r0():
     df = _df([["T0", "T0", 0.60, 0.55],
               ["a", "T1", 0.70, 0.60], ["b", "T1", 0.55, 0.80], ["c", "T1", 0.65, 0.62]])
@@ -88,6 +95,25 @@ def test_selection_breaks_ties_by_recall_then_id():
     df = _df([["T0", "T0", 0.5, 0.5],
               ["b", "T1", 0.7, 0.6], ["a", "T1", 0.6, 0.6], ["c", "T1", 0.7, 0.6]])
     assert select(df)["T1"]["config_id"] == "b"
+
+
+def test_t0_threshold_is_tuned_and_sets_r0():
+    df = _dfp([["T0_a", "T0", 0.80, 0.60, {"conf_thr": 0.10}],
+               ["T0_b", "T0", 0.70, 0.65, {"conf_thr": 0.30}],
+               ["T0_c", "T0", 0.75, 0.65, {"conf_thr": 0.20}],
+               ["x", "T1", 0.74, 0.90, {"window_s": 1.0, "theta": 0.5}],
+               ["y", "T1", 0.76, 0.70, {"window_s": 1.0, "theta": 0.5}]])
+    chosen = select(df)
+    assert chosen["T0"]["config_id"] == "T0_c"      # F2 tie -> higher recall
+    assert chosen["T1"]["r0"] == 0.75 and chosen["T1"]["config_id"] == "y"
+
+
+def test_selection_tie_break_shorter_window_then_lower_theta():
+    df = _dfp([["T0", "T0", 0.5, 0.5, {"conf_thr": 0.1}],
+               ["a", "T1", 0.7, 0.6, {"window_s": 2.0, "theta": 0.3}],
+               ["b", "T1", 0.7, 0.6, {"window_s": 1.0, "theta": 0.5}],
+               ["c", "T1", 0.7, 0.6, {"window_s": 1.0, "theta": 0.4}]])
+    assert select(df)["T1"]["config_id"] == "c"
 
 
 def test_selection_falls_back_to_highest_recall_and_flags():
@@ -102,21 +128,24 @@ def test_runner_and_freeze_on_synthetic_data(tmp_path):
     space = load_search_space(str(SPACE))
     space["t1"] = {"windows_s": [0.5, 1.0], "theta": {"start": 0.3, "stop": 0.7, "step": 0.2}}
     space["t2"]["n_configs"] = 3
+    space["t0"] = {"conf": {"start": 0.1, "stop": 0.5, "step": 0.2}}   # 3 thresholds
     small = tmp_path / "space.yaml"
     small.write_text(yaml.safe_dump(space))
 
     out = tmp_path / "run"
     tune_main(["--cache-dir", str(paths["cache_dir"]), "--gt-json", str(paths["gt_json"]),
-               "--manifest", str(paths["manifest"]), "--t0-conf", "0.3",
+               "--manifest", str(paths["manifest"]),
                "--search-space", str(small), "--tca-module", "tests.fake_tca",
                "--workers", "2", "--out-dir", str(out)])
 
     pooled = pd.read_csv(out / "dev_search.csv")
-    assert len(pooled) == 1 + 2 * 3 + 3 and (pooled["n_videos"] == 4).all()
+    assert len(pooled) == 3 + 2 * 3 + 3 and (pooled["n_videos"] == 4).all()
     per_video = pd.read_csv(out / "dev_search_per_video.csv")
     assert len(per_video) == len(pooled) * 4
-    t0 = pooled[pooled["condition"] == "T0"].iloc[0]
+    t0 = pooled[pooled["condition"] == "T0"].sort_values("f2").iloc[-1]
     assert t0["norip_frames"] > 0                    # the no-rip video is scored
+    meta = json.loads((out / "dev_search_meta.json").read_text())
+    assert meta["machine"]["cpu_count"]              # tuning machine is recorded
 
     frozen = tmp_path / "frozen"
     freeze(out / "dev_search.csv", frozen)

@@ -63,8 +63,13 @@ def t2_configs(space: dict) -> list[dict]:
     return out
 
 
+def t0_configs(space: dict) -> list[dict]:
+    """T0 tunes its own confidence threshold on dev (17 values by default)."""
+    return [t0_config(c, space) for c in _theta_grid(space["t0"]["conf"])]
+
+
 def t0_config(conf_thr: float, space: dict) -> dict:
-    """The single T0 configuration, fixed by Package 2's dev threshold."""
+    """One T0 configuration with a given confidence threshold."""
     return {"config_id": f"T0_conf{conf_thr:.2f}", "condition": "T0",
             "params": {"conf_thr": float(conf_thr),
                        "min_area_frac": space["min_area_frac"]}}

@@ -7,11 +7,14 @@ them over videos to get P, R, F2 and the false-alarm rate.
 Outputs (in --out-dir):
     dev_search_per_video.csv  one row per (configuration, video)
     dev_search.csv            one row per configuration, pooled over videos
-    dev_search_meta.json      inputs, git commit and timing of this run
+    dev_search_meta.json      inputs, git commit, machine (CPU, RAM) and timing
+
+All conditions start from the same candidate pool (conf >= 0.1); T0 tunes its
+own confidence threshold over the grid in the search space.
 
 Example:
-    python scripts/tune_dev.py --cache-dir cache/ --manifest data/manifest.csv \
-        --gt-json data/train.json --t0-conf 0.35 --out-dir runs/dev_search
+    python scripts/tune_dev.py --cache-dir cache/ --p2-reader p2_reader/ \
+        --manifest data/manifest.csv --gt-json data/train.json --out-dir runs/dev_search
 """
 
 from __future__ import annotations
@@ -19,6 +22,8 @@ from __future__ import annotations
 import argparse
 import importlib
 import json
+import os
+import platform
 import subprocess
 import sys
 import time
@@ -33,10 +38,11 @@ sys.path.insert(0, str(ROOT))
 
 from eval.interim_scoring import Counts, GroundTruth, metrics, score_video  # noqa: E402
 from temporal.cache_io import load_video_cache  # noqa: E402
-from temporal.search import (load_search_space, t0_config, t1_configs,  # noqa: E402
-                             t2_configs)
+from temporal.search import (load_search_space, t0_config, t0_configs,  # noqa: E402
+                             t1_configs, t2_configs)
 from temporal.t0 import run_t0  # noqa: E402
 from temporal.t1 import run_t1_theta_sweep  # noqa: E402
+from temporal.t2_adapter import run_t2  # noqa: E402
 
 COUNT_FIELDS = list(vars(Counts()).keys())
 
@@ -55,6 +61,18 @@ def git_commit() -> str:
         return sha + ("-dirty" if dirty else "")
     except (subprocess.CalledProcessError, FileNotFoundError):
         return "not-a-git-repo"
+
+
+def machine_info() -> dict:
+    """CPU and RAM of the tuning machine, recorded with every run (Ash, step 11)."""
+    info = {"hostname": platform.node(), "platform": platform.platform(),
+            "processor": platform.processor() or platform.machine(),
+            "cpu_count": os.cpu_count(), "python": platform.python_version()}
+    try:
+        info["ram_gb"] = round(os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / 1e9, 1)
+    except (ValueError, OSError, AttributeError):
+        info["ram_gb"] = None
+    return info
 
 
 def load_tca(module_name: str):
@@ -104,7 +122,7 @@ def process_video(cache_path: str) -> list[dict]:
 
     for cfg in (c for c in configs if c["condition"] == "T2"):
         t = time.perf_counter()
-        res = _STATE["run_tca"](cache, cfg["params"])
+        res = run_t2(cache, cfg["params"], _STATE["run_tca"])
         rows.append(_row(cfg, cache.video_id, score_video(res, gt, cache.video_id),
                          time.perf_counter() - t))
     cache.close()
@@ -131,8 +149,8 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--p2-reader", help="Package 2's 'reader' folder (needed for .sqlite)")
     ap.add_argument("--gt-json", required=True, help="COCO file holding the dev videos")
     ap.add_argument("--manifest", help="CSV with video_id,split; only split=='dev' is used")
-    ap.add_argument("--t0-conf", type=float, required=True,
-                    help="T0 confidence threshold chosen by Package 2")
+    ap.add_argument("--t0-conf", type=float,
+                    help="optional: score a single T0 threshold instead of the grid")
     ap.add_argument("--search-space", default=str(ROOT / "configs/search_space.yaml"))
     ap.add_argument("--conditions", nargs="+", default=["T0", "T1", "T2"])
     ap.add_argument("--tca-module", default="temporal.tca",
@@ -142,7 +160,8 @@ def main(argv: list[str] | None = None) -> None:
     args = ap.parse_args(argv)
 
     space = load_search_space(args.search_space)
-    configs = [t0_config(args.t0_conf, space)]   # T0 is always needed for R0
+    # T0 is always needed for R0.
+    configs = [t0_config(args.t0_conf, space)] if args.t0_conf is not None else t0_configs(space)
     if "T1" in args.conditions:
         configs += t1_configs(space)
     if "T2" in args.conditions:
@@ -172,7 +191,7 @@ def main(argv: list[str] | None = None) -> None:
     pooled.to_csv(out / "dev_search.csv", index=False)
     meta = {"git_commit": git_commit(), "search_space": args.search_space,
             "t0_conf": args.t0_conf, "videos": [p.stem for p in cache_paths],
-            "n_configs": len(configs), "wall_seconds": round(time.time() - start, 1)}
+            "n_configs": len(configs), "machine": machine_info(), "wall_seconds": round(time.time() - start, 1)}
     (out / "dev_search_meta.json").write_text(json.dumps(meta, indent=2))
     print(f"scored {len(configs)} configs on {len(cache_paths)} videos -> {out}")
 

@@ -9,7 +9,8 @@ from __future__ import annotations
 
 import cv2
 import numpy as np
-from pycocotools import mask as mask_utils
+
+from eval.evaluator import encode_mask
 
 from .cache_io import VideoCache
 
@@ -38,20 +39,24 @@ def upsample_binary(mask: np.ndarray, orig_size: tuple[int, int]) -> np.ndarray:
     return up >= 0.5
 
 
-def encode_result(mask_orig: np.ndarray, image_id: int) -> dict:
-    """Encode one original-resolution binary mask as a COCO result entry."""
-    rle = mask_utils.encode(np.asfortranarray(mask_orig.astype(np.uint8)))
-    rle["counts"] = rle["counts"].decode("ascii")   # JSON-serialisable
+def encode_result(mask_work: np.ndarray, image_id: int,
+                  orig_size: tuple[int, int]) -> dict:
+    """One final binary mask -> COCO result at the original resolution.
+
+    Uses P5's ``encode_mask`` (binarise, bilinear resize, binarise at 0.5), the one
+    resize rule shared by T0, T1 and T2 (agreed 2026-10-24).
+    """
+    h, w = orig_size
     return {
         "image_id": int(image_id),
         "category_id": 1,          # RipVIS has a single class
-        "segmentation": rle,
+        "segmentation": encode_mask(mask_work, h, w),
         "score": 1.0,              # every condition outputs thresholded masks
     }
 
 
 def masks_to_results(masks_work: list[np.ndarray], cache: VideoCache,
                      image_id: int) -> list[dict]:
-    """Upsample and encode the working-resolution masks of one annotated frame."""
-    return [encode_result(upsample_binary(m, cache.orig_size), image_id)
-            for m in masks_work]
+    """Encode the working-resolution masks of one annotated frame, in list order
+    (P5 matches predictions in the order they are listed)."""
+    return [encode_result(m, image_id, cache.orig_size) for m in masks_work]

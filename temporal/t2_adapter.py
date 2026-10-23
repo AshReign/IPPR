@@ -20,7 +20,7 @@ import numpy as np
 from pycocotools import mask as mask_utils
 
 from .cache_io import VideoCache
-from .common import DEFAULT_MIN_AREA_FRAC, encode_result, passes_area_filter, upsample_binary
+from .common import DEFAULT_MIN_AREA_FRAC, encode_result, passes_area_filter
 
 # Keys owned by Package 4; everything else is passed to run_tca unchanged.
 _P4_KEYS = {"min_area_frac"}
@@ -51,6 +51,5 @@ def run_t2(cache: VideoCache, params: dict, run_tca: Callable) -> list[dict]:
     for res in run_tca(to_p3_frames(cache), tca_params):
         mask = _decode(res["segmentation"])
         if passes_area_filter(mask, min_area):
-            results.append(encode_result(upsample_binary(mask, cache.orig_size),
-                                         res["image_id"]))
+            results.append(encode_result(mask, res["image_id"], cache.orig_size))
     return results

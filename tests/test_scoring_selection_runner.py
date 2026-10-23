@@ -9,7 +9,8 @@ import pytest
 import yaml
 from pycocotools import mask as mask_utils
 
-from eval.interim_scoring import Counts, match_image, metrics, parse_file_name
+from eval.interim_scoring import match_image, parse_file_name
+from temporal.scoring import Counts, metrics
 from scripts.make_synthetic_cache import make_dataset
 from scripts.select_configs import freeze
 from scripts.tune_dev import main as tune_main

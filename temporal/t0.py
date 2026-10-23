@@ -23,8 +23,10 @@ def run_t0(cache: VideoCache, params: dict) -> list[dict]:
     results: list[dict] = []
     # T0 only looks at the current frame, so unannotated frames can be skipped.
     for frame in cache.annotated_frames():
-        masks = [inst.soft_mask > 0.5
-                 for inst in frame.instances if inst.conf >= conf_thr]
+        # P5 matches predictions in list order: list T0 by descending confidence.
+        kept = sorted((i for i in frame.instances if i.conf >= conf_thr),
+                      key=lambda i: -i.conf)
+        masks = [inst.soft_mask > 0.5 for inst in kept]
         masks = [m for m in masks if passes_area_filter(m, min_area)]
         results.extend(masks_to_results(masks, cache, frame.image_id))
     return results

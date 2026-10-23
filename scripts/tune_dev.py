@@ -1,8 +1,9 @@
 """Package 4 dev search: score every T0/T1/T2 configuration on the dev videos.
 
 Each dev video runs in its own worker process (step 5). For every configuration
-the script logs TP, FP, FN and the no-rip frame counts per video, then pools
-them over videos to get P, R, F2 and the false-alarm rate.
+the script scores the video with Package 5's evaluator (eval/evaluator.py, the
+official RipVIS rule), logs TP, FP, FN and the no-rip frame counts per video,
+then pools them over videos to get P, R, F2 and the false-alarm rate.
 
 Outputs (in --out-dir):
     dev_search_per_video.csv  one row per (configuration, video)
@@ -14,7 +15,8 @@ own confidence threshold over the grid in the search space.
 
 Example:
     python scripts/tune_dev.py --cache-dir cache/ --p2-reader p2_reader/ \
-        --manifest data/manifest.csv --gt-json data/train.json --out-dir runs/dev_search
+        --ripvis-root C:/data/ripvis --out-dir runs/dev_search
+    (--ripvis-root defaults to configs/paths.yaml; --gt-json is for synthetic tests)
 """
 
 from __future__ import annotations
@@ -36,15 +38,15 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from eval.interim_scoring import Counts, GroundTruth, metrics, score_video  # noqa: E402
+from eval.evaluator import load_gt  # noqa: E402
 from temporal.cache_io import load_video_cache  # noqa: E402
+from temporal.scoring import (COUNT_FIELDS, Counts, frame_to_image, gt_from_coco,  # noqa: E402
+                              gt_subset, metrics, score)
 from temporal.search import (load_search_space, t0_config, t0_configs,  # noqa: E402
                              t1_configs, t2_configs)
 from temporal.t0 import run_t0  # noqa: E402
 from temporal.t1 import run_t1_theta_sweep  # noqa: E402
 from temporal.t2_adapter import run_t2  # noqa: E402
-
-COUNT_FIELDS = list(vars(Counts()).keys())
 
 # Per-process state, filled once by the pool initialiser so the ground truth is
 # not re-loaded (or pickled) for every video.
@@ -80,10 +82,17 @@ def load_tca(module_name: str):
     return importlib.import_module(module_name).run_tca
 
 
-def _init_worker(gt_json: str, configs: list[dict], tca_module: str | None,
+def build_gt(gt_json: str | None, ripvis_root: str | None, videos: list[str]):
+    """P5's dev ground truth (real runs) or one built from a COCO file (tests)."""
+    if gt_json:
+        return gt_from_coco(gt_json)
+    return load_gt("dev", ripvis_root, videos=videos)
+
+
+def _init_worker(gt_args: tuple, configs: list[dict], tca_module: str | None,
                  p2_reader: str | None = None) -> None:
     _STATE["p2_reader"] = p2_reader
-    _STATE["gt"] = GroundTruth(gt_json)
+    _STATE["gt"] = build_gt(*gt_args)
     _STATE["configs"] = configs
     _STATE["run_tca"] = load_tca(tca_module) if tca_module else None
 
@@ -97,14 +106,16 @@ def process_video(cache_path: str) -> list[dict]:
     """Score every configuration on one video. Runs inside a worker process."""
     gt, configs = _STATE["gt"], _STATE["configs"]
     cache = load_video_cache(cache_path, _STATE.get("p2_reader"))
-    cache.attach_image_ids(gt.frames_by_video[cache.video_id])
+    gt = gt_subset(gt, cache.video_id)
+    if gt.frames.empty:
+        raise ValueError(f"{cache.video_id}: no annotated frames in the dev ground truth")
+    cache.attach_image_ids(frame_to_image(gt))
     rows: list[dict] = []
 
     for cfg in (c for c in configs if c["condition"] == "T0"):
         t = time.perf_counter()
         res = run_t0(cache, cfg["params"])
-        rows.append(_row(cfg, cache.video_id, score_video(res, gt, cache.video_id),
-                         time.perf_counter() - t))
+        rows.append(_row(cfg, cache.video_id, score(res, gt), time.perf_counter() - t))
 
     # T1: the window mean is shared by all thresholds of the same window.
     by_window: dict[float, list[dict]] = defaultdict(list)
@@ -117,14 +128,13 @@ def process_video(cache_path: str) -> list[dict]:
                                    cfgs[0]["params"]["min_area_frac"])
         per_cfg = (time.perf_counter() - t) / len(cfgs)   # amortised, not official FPS
         for cfg in cfgs:
-            counts = score_video(sweep[cfg["params"]["theta"]], gt, cache.video_id)
+            counts = score(sweep[cfg["params"]["theta"]], gt)
             rows.append(_row(cfg, cache.video_id, counts, per_cfg))
 
     for cfg in (c for c in configs if c["condition"] == "T2"):
         t = time.perf_counter()
         res = run_t2(cache, cfg["params"], _STATE["run_tca"])
-        rows.append(_row(cfg, cache.video_id, score_video(res, gt, cache.video_id),
-                         time.perf_counter() - t))
+        rows.append(_row(cfg, cache.video_id, score(res, gt), time.perf_counter() - t))
     cache.close()
     return rows
 
@@ -147,7 +157,8 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--cache-dir", required=True,
                     help="one <video_id>.sqlite (Package 2) or <video_id>.pkl per video")
     ap.add_argument("--p2-reader", help="Package 2's 'reader' folder (needed for .sqlite)")
-    ap.add_argument("--gt-json", required=True, help="COCO file holding the dev videos")
+    ap.add_argument("--ripvis-root", help="RipVIS folder for P5's load_gt (default: configs/paths.yaml)")
+    ap.add_argument("--gt-json", help="COCO file instead of P5's dev split (synthetic tests only)")
     ap.add_argument("--manifest", help="CSV with video_id,split; only split=='dev' is used")
     ap.add_argument("--t0-conf", type=float,
                     help="optional: score a single T0 threshold instead of the grid")
@@ -179,7 +190,8 @@ def main(argv: list[str] | None = None) -> None:
 
     start = time.time()
     with Pool(args.workers, initializer=_init_worker,
-              initargs=(args.gt_json, configs, tca_module, args.p2_reader)) as pool:
+              initargs=((args.gt_json, args.ripvis_root, [p.stem for p in cache_paths]),
+                        configs, tca_module, args.p2_reader)) as pool:
         per_video_rows = [r for rows in pool.imap_unordered(
             process_video, [str(p) for p in cache_paths]) for r in rows]
 
@@ -190,7 +202,7 @@ def main(argv: list[str] | None = None) -> None:
     pooled = pool_over_videos(per_video, configs)
     pooled.to_csv(out / "dev_search.csv", index=False)
     meta = {"git_commit": git_commit(), "search_space": args.search_space,
-            "t0_conf": args.t0_conf, "videos": [p.stem for p in cache_paths],
+            "t0_conf": args.t0_conf, "videos": [p.stem for p in cache_paths], "scorer": "eval.evaluator (P5)",
             "n_configs": len(configs), "machine": machine_info(), "wall_seconds": round(time.time() - start, 1)}
     (out / "dev_search_meta.json").write_text(json.dumps(meta, indent=2))
     print(f"scored {len(configs)} configs on {len(cache_paths)} videos -> {out}")

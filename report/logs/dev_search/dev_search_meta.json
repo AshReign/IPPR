@@ -1,0 +1,35 @@
+{
+  "git_commit": "236fdf2c3af19fb74db4adb689d3be45bf5a75b8",
+  "search_space": "/Users/vunguyenngoc/Desktop/Image Processing and Pattern Recognition/Project/Assignment_2/team_repo/configs/search_space.yaml",
+  "t0_conf": null,
+  "videos": [
+    "RipVIS-031",
+    "RipVIS-045",
+    "RipVIS-071",
+    "RipVIS-087",
+    "RipVIS-089",
+    "RipVIS-097",
+    "RipVIS-100",
+    "RipVIS-111",
+    "RipVIS-116",
+    "RipVIS-117",
+    "RipVIS-126",
+    "RipVIS-135",
+    "RipVIS-140",
+    "RipVIS-150",
+    "RipVIS-NR-012",
+    "RipVIS-NR-017",
+    "RipVIS-NR-030"
+  ],
+  "scorer": "eval.evaluator (P5)",
+  "n_configs": 113,
+  "machine": {
+    "hostname": "ngocs-MacBook-Pro.local",
+    "platform": "macOS-26.0-arm64-arm-64bit",
+    "processor": "arm",
+    "cpu_count": 10,
+    "python": "3.12.6",
+    "ram_gb": 17.2
+  },
+  "wall_seconds": 2466.3
+}

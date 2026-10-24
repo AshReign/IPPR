@@ -1,0 +1,26 @@
+condition: T2
+config_id: T2_11
+params:
+  absence_dur: 1.7877
+  high: 0.5075
+  iou_thr: 0.3
+  low: 0.346
+  min_area_frac: 0.001
+  present_dur: 0.3142
+  sigma_px: 2.0
+  tau: 0.1221
+  timeout: 2.3746
+dev_metrics:
+  precision: 0.2158241758241758
+  recall: 0.5121251629726206
+  f2: 0.4018003273322422
+  false_alarm_rate: 0.3529411764705882
+  tp: 1964.0
+  fp: 7136.0
+  fn: 1871.0
+dev_t0_recall_r0: 0.494393741851369
+selection_flag: ''
+git_commit: 236fdf2c3af19fb74db4adb689d3be45bf5a75b8
+source_csv: report/logs/dev_search/dev_search.csv
+source_csv_sha256: 8b1091e38014496af08509d5ebf484b82d2bb84d9ad93d35966c54963310b1e6
+frozen_at: '2026-10-24T22:06:36'

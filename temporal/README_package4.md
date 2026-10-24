@@ -30,6 +30,7 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 ## Decisions (Ash, 2026-10-23)
 - Every condition gets the same candidate pool (conf >= 0.1) and tunes its own decision threshold. T1 and T2 merge all candidates; T0 tunes `conf_thr` on dev.
 - Ties: highest F2 among configs with recall >= R0, then higher recall, then shorter window, then lower θ.
+- Area filter (2026-10-24): binarise each output instance (soft mask > 0.5 for T0/TCA, mean > θ for T1), upsample to original resolution, drop it if its area is below 0.001 × width × height. `common.encode_result` does steps 2-3 for every condition.
 - Tuning and final scoring run on one named machine with the cache copied to local SSD; `dev_search_meta.json` records CPU and RAM.
 
 ## Still to confirm

@@ -1,0 +1,13 @@
+Reference versions from the existing project runtime; no installation is performed.
+Read the generated CPU smoke JSON for the actual imported environment versions.
+
+numpy==1.26.4
+scipy==1.15.3
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+ultralytics==8.3.197
+opencv-python==4.11.0.86
+
+This optional reader performs CPU work only. Other package builds or versions
+have not been qualified by this local delivery. Existing environment dependencies
+must not be upgraded or replaced implicitly.

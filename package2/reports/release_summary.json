@@ -1,0 +1,347 @@
+{
+  "schema": "p2-english-release-summary-v1",
+  "release_version": "IPPR_P2_Formal_EN_20261024_r1",
+  "derivation": "Read-only English summary of completed, sealed evidence; no new model experiment.",
+  "model": {
+    "file": "weights/epoch5.pt",
+    "completed_epoch": 6,
+    "zero_based_epoch": 5,
+    "sha256": "278ba795436c1299621b68a6f775a4af8b284afcab9c242384abff877a6906ca",
+    "t0_confidence": 0.1
+  },
+  "source_versions": {
+    "p1_commit": "704f724146792482359ebaa2235cde5c6a41b059",
+    "p4_commit": "1004e203b7f9e4e3b2f3dcf740cc4983369fde51",
+    "p5_commit": "2fa7e07ab42cceb49ac149a391c05df0dcc63a1a",
+    "original_p2_source_snapshot_commit": "c221d204dae9d24188c72dd0fa7bd8e8e7313c94",
+    "original_snapshot_has_team_remote": false,
+    "team_publication_commit_location": "PUBLICATION_RECEIPT.json supplied with the published release; or git rev-parse HEAD in the team checkout"
+  },
+  "original_freeze_sha256": "6bddf2e07cae81ee2541c8c5bef8b2ad78dbbd698bd207f161f34eee6ae1aa7e",
+  "original_sealed_final_manifest_sha256": "a919649a76a8b4157b91213231c96fb4de962fcb590694a3c021fa6afd9f07f4",
+  "original_complete_cache_verification_sha256": "644b8cf7aaea17ba0513c3e583d814ba88b6eb83c6c85f316c6724e01d5c52e5",
+  "dev_selection": {
+    "precision": 0.3106972144387671,
+    "recall": 0.4915254237288136,
+    "f1": 0.380731165421127,
+    "f2": 0.4402765450553557,
+    "tp": 1885,
+    "fp": 4182,
+    "fn": 1950,
+    "false_alarm_rate": 0.27205882352941174,
+    "n_frames": 2421,
+    "n_no_rip_frames": 272,
+    "n_predictions": 6067
+  },
+  "selection_scope": {
+    "videos": 17,
+    "annotated_jpeg_images": 2421,
+    "checkpoints": 10,
+    "confidence_thresholds": [
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9
+    ],
+    "combinations": 170,
+    "final_val_used": false,
+    "tie_breaks": [
+      "F2 descending",
+      "recall descending",
+      "precision descending",
+      "completed epoch ascending",
+      "confidence threshold ascending"
+    ]
+  },
+  "cache": {
+    "schema": "p2-video-cache-sqlite-v1",
+    "raw_candidate_pool": "confidence >= float32(0.1)",
+    "full_decoded_frames": true,
+    "raw_area_filter": false,
+    "drop_empty_candidates": false,
+    "raw_soft_dtype": "float16",
+    "coordinate_space": "full unpadded working frame, long side 640",
+    "groups": {
+      "dev": {
+        "videos": 17,
+        "frames": 23691,
+        "instances": 74419,
+        "empty_prediction_frames": 459,
+        "empty_work_binary_masks_retained": 4029,
+        "bytes": 1419472896
+      },
+      "val": {
+        "videos": 30,
+        "frames": 29006,
+        "instances": 59754,
+        "empty_prediction_frames": 2890,
+        "empty_work_binary_masks_retained": 11240,
+        "bytes": 1867612160
+      }
+    },
+    "totals": {
+      "videos": 47,
+      "frames": 52697,
+      "bytes": 3287085056,
+      "instances": 134173,
+      "empty_prediction_frames": 3349,
+      "empty_work_binary_masks_retained": 15269,
+      "frames_by_split": {
+        "dev": 23691,
+        "val": 29006
+      }
+    }
+  },
+  "validation": {
+    "native_extraction": {
+      "status": "PASS",
+      "frames": 200,
+      "nonempty_native_instances": 538,
+      "native_empty_candidates": 43,
+      "minimum_iou": 1.0,
+      "required_iou": 0.99
+    },
+    "legacy_v3_actual_video": {
+      "name": "Original v3 actual-MP4 inverse; failure retained",
+      "status": "FAIL",
+      "frames": 50,
+      "raw_candidates": 149,
+      "native_nonempty_candidates": 135,
+      "minimum_instance_iou": 0.9707612981498331,
+      "failed_instances": 1,
+      "approximate_fallback_instances": 21,
+      "scope": "This recorded sample and implementation only."
+    },
+    "v4_base50": {
+      "name": "Optional v4 regression on original fixed base50",
+      "status": "PASS",
+      "frames": 50,
+      "raw_candidates": 149,
+      "native_nonempty_candidates": 135,
+      "minimum_instance_iou": 0.9938299609835768,
+      "failed_instances": 0,
+      "approximate_fallback_instances": 12,
+      "scope": "this precommitted sample only; separate qualification must require both base50 and holdout50; unchanged v3 failure is not relabelled"
+    },
+    "v4_holdout50": {
+      "name": "Optional v4 precommitted disjoint seed43 holdout50",
+      "status": "PASS",
+      "frames": 50,
+      "raw_candidates": 149,
+      "native_nonempty_candidates": 138,
+      "minimum_instance_iou": 0.9936682725395733,
+      "failed_instances": 0,
+      "approximate_fallback_instances": 6,
+      "scope": "this precommitted sample only; separate qualification must require both base50 and holdout50; unchanged v3 failure is not relabelled"
+    },
+    "v4_required_instance_iou": 0.98,
+    "v4_lossless_claim": false,
+    "shared_p4_encode": {
+      "status": "PASS",
+      "stats": {
+        "frames": 50,
+        "instances": 149,
+        "nonempty_frame_count": 50,
+        "nonempty_work_instances": 135,
+        "retained_predictions": 122,
+        "failed_frames": 0,
+        "failed_instances": 0,
+        "threshold_comparisons": 50,
+        "failed_output_comparisons": 0,
+        "unpaired_frames": 0
+      },
+      "confidence": 0.1,
+      "legacy_reference_status": "FAIL",
+      "scope": "Equality of cached and fresh float16 working fields and final T0 outputs on 50 actual dev MP4 frames. Not native-mask equivalence or T1/TCA validation."
+    },
+    "all_47_structural_readback": {
+      "status": "PASS",
+      "frames": 52697,
+      "checks": {
+        "frozen_weights_code_snapshot_unchanged": true,
+        "production_200_50_gate": true,
+        "frozen_scope_and_common_identity": true,
+        "all_47_streaming_blob_pts_readback": true,
+        "two_independent_actual_dev_gates": true,
+        "dev_before_val_dual_gate_authorization": true,
+        "timing_measurements_labelled": true,
+        "ripvis100_strict_failure_retained": true,
+        "all_inputs_unchanged_during_readonly_check": true
+      },
+      "scope": "Every cache row/payload/PTS and provenance; not fresh inference of every frame."
+    }
+  },
+  "runtime": {
+    "device_type": "cuda",
+    "device_name": "NVIDIA GeForce RTX 4060 Ti",
+    "torch_version": "2.6.0+cu124",
+    "torch_cuda_version": "12.4",
+    "cudnn_version": 90100,
+    "ultralytics_version": "8.3.197",
+    "inference_dtype": "float32",
+    "batch": 1,
+    "matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "cudnn_deterministic": false,
+    "cudnn_benchmark": false,
+    "python_version": "3.11.15",
+    "numpy_version": "1.26.4",
+    "cpu_threads": 2,
+    "cpu_interop_threads": 1,
+    "device_requested": "0",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35"
+  },
+  "throughput": {
+    "timing_records": 47,
+    "new_frames_in_retained_export_measurements": 52697,
+    "full_timeline_timing_coverage": true,
+    "export_wall_seconds": 2748.361560556999,
+    "predict_and_cpu_transfer_seconds": 1210.2445261150492,
+    "export_end_to_end_fps": 19.173969231806648,
+    "predict_and_cpu_transfer_fps": 43.54244027788354,
+    "includes": "Real per-video original export wall: decode/resume, model initialization, inference, CPU transfer, SQLite writes and full readback. Prediction first-call warmup included. Hashing/orchestration/qualification excluded.",
+    "limitations": "Not an official benchmark or pure GPU inference FPS. Separate decode/write/readback timings unavailable. No inferred timing for missing/interrupted measurements."
+  },
+  "throughput_by_split": {
+    "dev": {
+      "split": "dev",
+      "scope_videos": 17,
+      "scope_frames": 23691,
+      "timing_records": 17,
+      "new_frames_in_retained_export_measurements": 23691,
+      "predict_and_cpu_transfer_seconds": 538.1039556119938,
+      "export_wall_seconds": 1214.067809345,
+      "predict_and_cpu_transfer_fps": 44.02680885899801,
+      "export_end_to_end_fps": 19.513737056236998,
+      "full_timeline_timing_coverage": true,
+      "measurement_video_ids": [
+        "RipVIS-031",
+        "RipVIS-045",
+        "RipVIS-071",
+        "RipVIS-087",
+        "RipVIS-089",
+        "RipVIS-097",
+        "RipVIS-100",
+        "RipVIS-111",
+        "RipVIS-116",
+        "RipVIS-117",
+        "RipVIS-126",
+        "RipVIS-135",
+        "RipVIS-140",
+        "RipVIS-150",
+        "RipVIS-NR-012",
+        "RipVIS-NR-017",
+        "RipVIS-NR-030"
+      ],
+      "unmeasured_video_ids": [],
+      "partial_original_export_video_ids": [],
+      "scope": "raw cache prediction/CPU transfer and full-frame cache export/readback; excludes T0 encode and P5 scoring"
+    },
+    "val": {
+      "split": "val",
+      "scope_videos": 30,
+      "scope_frames": 29006,
+      "timing_records": 30,
+      "new_frames_in_retained_export_measurements": 29006,
+      "predict_and_cpu_transfer_seconds": 672.1405705030554,
+      "export_wall_seconds": 1534.2937512119988,
+      "predict_and_cpu_transfer_fps": 43.15466328463228,
+      "export_end_to_end_fps": 18.905115123545947,
+      "full_timeline_timing_coverage": true,
+      "measurement_video_ids": [
+        "RipVIS-015",
+        "RipVIS-026",
+        "RipVIS-044",
+        "RipVIS-046",
+        "RipVIS-053",
+        "RipVIS-059",
+        "RipVIS-066",
+        "RipVIS-067",
+        "RipVIS-072",
+        "RipVIS-079",
+        "RipVIS-090",
+        "RipVIS-102",
+        "RipVIS-108",
+        "RipVIS-109",
+        "RipVIS-121",
+        "RipVIS-128",
+        "RipVIS-129",
+        "RipVIS-133",
+        "RipVIS-134",
+        "RipVIS-137",
+        "RipVIS-143",
+        "RipVIS-144",
+        "RipVIS-146",
+        "RipVIS-147",
+        "RipVIS-NR-004",
+        "RipVIS-NR-019",
+        "RipVIS-NR-020",
+        "RipVIS-NR-022",
+        "RipVIS-NR-024",
+        "RipVIS-NR-026"
+      ],
+      "unmeasured_video_ids": [],
+      "partial_original_export_video_ids": [],
+      "scope": "raw cache prediction/CPU transfer and full-frame cache export/readback; excludes T0 encode and P5 scoring"
+    }
+  },
+  "known_limits": {
+    "original_v3_actual_video_validation_still_failed": true,
+    "ripvis_100_original_strict_source_audit": "FAIL retained",
+    "ripvis_100_max_p1_vs_pts_seconds": 0.030055604235122768,
+    "anchor_ambiguities": [
+      {
+        "video_id": "RipVIS-116",
+        "split": "dev",
+        "warning": "Sample frame 0: AMBIGUOUS_ADJACENT_OR_STATIC_FRAMES"
+      },
+      {
+        "video_id": "RipVIS-NR-030",
+        "split": "dev",
+        "warning": "Sample frame 0: AMBIGUOUS_ADJACENT_OR_STATIC_FRAMES"
+      },
+      {
+        "video_id": "RipVIS-015",
+        "split": "val",
+        "warning": "Sample frame 0: AMBIGUOUS_ADJACENT_OR_STATIC_FRAMES"
+      },
+      {
+        "video_id": "RipVIS-053",
+        "split": "val",
+        "warning": "Sample frame 0: AMBIGUOUS_ADJACENT_OR_STATIC_FRAMES"
+      },
+      {
+        "video_id": "RipVIS-NR-020",
+        "split": "val",
+        "warning": "Sample frame 0: AMBIGUOUS_ADJACENT_OR_STATIC_FRAMES"
+      },
+      {
+        "video_id": "RipVIS-NR-022",
+        "split": "val",
+        "warning": "Sample frame 0: AMBIGUOUS_ADJACENT_OR_STATIC_FRAMES"
+      },
+      {
+        "video_id": "RipVIS-NR-026",
+        "split": "val",
+        "warning": "Sample frame 0: AMBIGUOUS_ADJACENT_OR_STATIC_FRAMES"
+      }
+    ],
+    "native_probability_recovery_is_lossless": false,
+    "real_modified_t1_tca_outputs_validated": false,
+    "jpeg_selection_predictions_equal_mp4_predictions": "Not claimed",
+    "final_val_labels_scored_or_used_for_tuning": false
+  }
+}

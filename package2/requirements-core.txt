@@ -1,0 +1,14 @@
+# P2-specific tested dependencies. Install matching Torch/Torchvision separately.
+# Original tested runtime: Python 3.11.15, torch 2.6.0+cu124, torchvision 0.21.0+cu124.
+numpy==1.26.4
+scipy==1.15.3
+opencv-python==4.11.0.86
+pandas==2.2.3
+pycocotools==2.0.10
+ultralytics==8.3.197
+ultralytics-thop==2.2.2
+av==15.1.0
+pillow==11.3.0
+PyYAML==6.0.2
+psutil==7.2.2
+matplotlib==3.10.1

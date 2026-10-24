@@ -1,0 +1,46 @@
+{
+  "schema": "p2-optional-v4-publication-bundle-manifest-v1",
+  "new_publication_manifest_not_original_bundle_manifest": true,
+  "files": [
+    {
+      "path": "DEPENDENCIES.txt",
+      "bytes": 490,
+      "sha256": "0898ff05cc0594909c14892843c1a9013cdee47337cc70787378b5ba97df7396"
+    },
+    {
+      "path": "QUALIFICATION.json",
+      "bytes": 2008,
+      "sha256": "b5721b76d55893c784f9e3b4347963b62705f044a54e92114e286cfcb88c9251"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2140,
+      "sha256": "dfba9edd5cd1177596c35594f0a013b9dce3b3420d0ec4834db58507ecf47c1b"
+    },
+    {
+      "path": "SPEC.json",
+      "bytes": 2830,
+      "sha256": "267aff4f4113d4c6da6145cef67f239377af67d91d7b473bc7bba7e0bf40ad32"
+    },
+    {
+      "path": "cache_io.py",
+      "bytes": 6339,
+      "sha256": "77b14aa00fb5ebaee22448fb0a9bf040dfc90db2ebc20f889904019cdb7d06ed"
+    },
+    {
+      "path": "read_v4.py",
+      "bytes": 7371,
+      "sha256": "6f039fa237136fa184add1400b9bf21257ade27e564bb516915333d237bcac26"
+    },
+    {
+      "path": "restore.py",
+      "bytes": 16863,
+      "sha256": "e0f8b2e7ef385266b3e9188ba031f3bb49e618051b39975c8223199183f9fa2b"
+    },
+    {
+      "path": "soft_masks_v3.py",
+      "bytes": 28338,
+      "sha256": "9021ae722b5e33437e3571c679808b1aae8d2afd90a387f6bfb5ecc9339c101f"
+    }
+  ]
+}

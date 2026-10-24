@@ -1,0 +1,87 @@
+{
+  "schema": "p2-english-release-evidence-index-v1",
+  "release_version": "IPPR_P2_Formal_EN_20261024_r1",
+  "status": "Derived summaries only; original sealed bytes preserved",
+  "logical_roots": {
+    "sealed_final": "Original finalized P2 delivery",
+    "sealed_workspace": "Original final-delivery verification workspace"
+  },
+  "files": [
+    {
+      "source": "sealed_final/DELIVERY_SHA256.json",
+      "bytes": 81504,
+      "sha256": "a919649a76a8b4157b91213231c96fb4de962fcb590694a3c021fa6afd9f07f4"
+    },
+    {
+      "source": "sealed_final/README.zh-CN.txt",
+      "bytes": 14746,
+      "sha256": "4ae9c2a3dc322ddde103af543741857493fada920e55dab6e71f0cfcee25446f"
+    },
+    {
+      "source": "sealed_final/freeze/frozen.json",
+      "bytes": 18998,
+      "sha256": "6bddf2e07cae81ee2541c8c5bef8b2ad78dbbd698bd207f161f34eee6ae1aa7e"
+    },
+    {
+      "source": "sealed_final/pilot/pilot_zero_predictions.md",
+      "bytes": 3439,
+      "sha256": "6a58b058b3d1a18e3e790c9adc9f490e8c887729d9256de108a56e7036cb371a"
+    },
+    {
+      "source": "sealed_final/restoration_revision/qualification.json",
+      "bytes": 10574,
+      "sha256": "32604063458dc972691e973ca060a5027826bd02bd5adfbf4894c1a8f7c1ffb0"
+    },
+    {
+      "source": "sealed_final/selection/ranking.csv",
+      "bytes": 30302,
+      "sha256": "a803c5c36804c235e62d24a8cdd16a5dc1de60d14934c76837131f124280ceb8"
+    },
+    {
+      "source": "sealed_final/training/historical_training_report.md",
+      "bytes": 7962,
+      "sha256": "6eda1ec28b9fde3bf76077fb90744d88e610bdc2a03c4533fa5c97b423ada9a6"
+    },
+    {
+      "source": "sealed_final/training/p2_measurements.json",
+      "bytes": 10199,
+      "sha256": "189d8774bf954277d846f04d6b04005b58960e6dc953d6c3ec346e75ed62c5e0"
+    },
+    {
+      "source": "sealed_final/validation/actual_dev_inverse_50/summary.json",
+      "bytes": 7353,
+      "sha256": "7ef781e0545cec95880e9868ce66872be0ffc70978c59c043991a38cd56b71e2"
+    },
+    {
+      "source": "sealed_final/validation/actual_dev_p4_50/summary.json",
+      "bytes": 21605,
+      "sha256": "7557bf7bb1f90780819cdd2951b8283aa5c60962c14a53bf4d7e344dbec37289"
+    },
+    {
+      "source": "sealed_final/validation/production_native_cache_200_50/summary.json",
+      "bytes": 143756,
+      "sha256": "0392be8c016978dfe32a58c6eb5ba90ed856bb5fa06edeb09303924c89f64170"
+    },
+    {
+      "source": "sealed_final/validation/restoration_v4_base50/summary.json",
+      "bytes": 27738,
+      "sha256": "8a28ff4539e2da4d1762b6f04eaa22d7993ce8cc124ac2d7d35519927319eb00"
+    },
+    {
+      "source": "sealed_final/validation/restoration_v4_holdout50/summary.json",
+      "bytes": 27778,
+      "sha256": "a08fd3b501ca9c471529f2b8fa359b623f19f23ea954577af0d08973384d5ad6"
+    },
+    {
+      "source": "sealed_workspace/reports/final_cache_verification_revision_01.json",
+      "bytes": 87831,
+      "sha256": "644b8cf7aaea17ba0513c3e583d814ba88b6eb83c6c85f316c6724e01d5c52e5"
+    },
+    {
+      "source": "sealed_workspace/reports/final_report_values_revision.json",
+      "bytes": 21487,
+      "sha256": "f7e8965b7535cfbe693bd9a17b1233b35296328f0478fdb1b42bf342a6819d3d"
+    }
+  ],
+  "publication_note": "This source-evidence index is not the release payload checksum manifest or a remote-upload receipt."
+}

@@ -1,0 +1,957 @@
+{
+  "schema": "p2-code-publication-map-v1",
+  "release_version": "IPPR_P2_Formal_EN_20261024_r1",
+  "frozen_source_snapshot_commit": "c221d204dae9d24188c72dd0fa7bd8e8e7313c94",
+  "original_freeze_sha256": "6bddf2e07cae81ee2541c8c5bef8b2ad78dbbd698bd207f161f34eee6ae1aa7e",
+  "source_files": [
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": ".gitattributes",
+      "release_relative": ".gitattributes",
+      "source_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "release_sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "bytes": 8,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "configs/selection_p4_protocol.json",
+      "release_relative": "configs/selection_p4_protocol.json",
+      "source_sha256": "5a2aac1b206e2a07fc9252a2295f23630790b945742d5295335c8a3af5e9b687",
+      "release_sha256": "5a2aac1b206e2a07fc9252a2295f23630790b945742d5295335c8a3af5e9b687",
+      "bytes": 3253,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "configs/selection_protocol.json",
+      "release_relative": "configs/selection_protocol.json",
+      "source_sha256": "60c04509b22c49b30bc2dfbea1638a038a11896469281448e3a9573d38177e6b",
+      "release_sha256": "60c04509b22c49b30bc2dfbea1638a038a11896469281448e3a9573d38177e6b",
+      "bytes": 1121,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "examples/read_cache.py",
+      "release_relative": "examples/read_cache.py",
+      "source_sha256": "4d281d9ea56dad8565b591a14ad05f29c15b8e4ef9f8342f2925e8b2aeb922e4",
+      "release_sha256": "4d281d9ea56dad8565b591a14ad05f29c15b8e4ef9f8342f2925e8b2aeb922e4",
+      "bytes": 4629,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "examples/read_dev_selection.py",
+      "release_relative": "examples/read_dev_selection.py",
+      "source_sha256": "c8c811748da4be9540888a261ac10088d36d154513d0b31f095655b8a5bfb76a",
+      "release_sha256": "c8c811748da4be9540888a261ac10088d36d154513d0b31f095655b8a5bfb76a",
+      "bytes": 1201,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "p2/__init__.py",
+      "release_relative": "p2/__init__.py",
+      "source_sha256": "2b3702783dc853e1990bc3979990f6a1fa7003350975d5f40de24abbf952f1af",
+      "release_sha256": "2b3702783dc853e1990bc3979990f6a1fa7003350975d5f40de24abbf952f1af",
+      "bytes": 84,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "p2/cache_io.py",
+      "release_relative": "p2/cache_io.py",
+      "source_sha256": "77b14aa00fb5ebaee22448fb0a9bf040dfc90db2ebc20f889904019cdb7d06ed",
+      "release_sha256": "77b14aa00fb5ebaee22448fb0a9bf040dfc90db2ebc20f889904019cdb7d06ed",
+      "bytes": 6339,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "p2/selection.py",
+      "release_relative": "p2/selection.py",
+      "source_sha256": "c5b23037aaab24fe1f380ed3d365db82c48246a937d9ac4f2a1adde25dc9256c",
+      "release_sha256": "c5b23037aaab24fe1f380ed3d365db82c48246a937d9ac4f2a1adde25dc9256c",
+      "bytes": 4900,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "p2/soft_masks.py",
+      "release_relative": "p2/soft_masks.py",
+      "source_sha256": "9021ae722b5e33437e3571c679808b1aae8d2afd90a387f6bfb5ecc9339c101f",
+      "release_sha256": "9021ae722b5e33437e3571c679808b1aae8d2afd90a387f6bfb5ecc9339c101f",
+      "bytes": 28338,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "p2/t0_output.py",
+      "release_relative": "p2/t0_output.py",
+      "source_sha256": "1a578f1dada74423bb053489a50991f16733a41eaea6903d3c31ac8d3ae1163a",
+      "release_sha256": "1a578f1dada74423bb053489a50991f16733a41eaea6903d3c31ac8d3ae1163a",
+      "bytes": 7934,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "p5_evaluator.py",
+      "release_relative": "p5_evaluator.py",
+      "source_sha256": "b539ae46869407ffdfce9a8d4582d0a72bd722bdead816453d4cc706ab49f8c7",
+      "release_sha256": "b539ae46869407ffdfce9a8d4582d0a72bd722bdead816453d4cc706ab49f8c7",
+      "bytes": 9398,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tests/test_audit_dev_predictions.py",
+      "release_relative": "tests/test_audit_dev_predictions.py",
+      "source_sha256": "cb200ae19253efb148e50564c52f442d4ef130b1b044b6d97882496c5f3dd10d",
+      "release_sha256": "cb200ae19253efb148e50564c52f442d4ef130b1b044b6d97882496c5f3dd10d",
+      "bytes": 5988,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tests/test_cache_io.py",
+      "release_relative": "tests/test_cache_io.py",
+      "source_sha256": "990c613ffa8ecf7a97eef402c5d74a693c5c5ab027f00383d718d4cbc1d11d0a",
+      "release_sha256": "990c613ffa8ecf7a97eef402c5d74a693c5c5ab027f00383d718d4cbc1d11d0a",
+      "bytes": 1321,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tests/test_dev_predictions.py",
+      "release_relative": "tests/test_dev_predictions.py",
+      "source_sha256": "552474da4e425cc9dc2be8b174d34cdc8b722478919455d62568832cf592357b",
+      "release_sha256": "552474da4e425cc9dc2be8b174d34cdc8b722478919455d62568832cf592357b",
+      "bytes": 18172,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tests/test_score_dev_p4.py",
+      "release_relative": "tests/test_score_dev_p4.py",
+      "source_sha256": "919929a8cb18f3363fe497052727f09856423444626281f94138d86a80127ff1",
+      "release_sha256": "919929a8cb18f3363fe497052727f09856423444626281f94138d86a80127ff1",
+      "bytes": 7758,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tests/test_selection.py",
+      "release_relative": "tests/test_selection.py",
+      "source_sha256": "f3f4aaef711901c419f5d7a463757b57813a6fde212ca41c37363e8c43aadc64",
+      "release_sha256": "f3f4aaef711901c419f5d7a463757b57813a6fde212ca41c37363e8c43aadc64",
+      "bytes": 3074,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tests/test_soft_masks.py",
+      "release_relative": "tests/test_soft_masks.py",
+      "source_sha256": "2b61e07f18f58d4a030a7aecfaa3571121ee020aa0f99516bcc0b85a81b7b649",
+      "release_sha256": "2b61e07f18f58d4a030a7aecfaa3571121ee020aa0f99516bcc0b85a81b7b649",
+      "bytes": 16545,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tests/test_t0_output.py",
+      "release_relative": "tests/test_t0_output.py",
+      "source_sha256": "313b125218451c16d895c2ba6e5533875c55df5301a0a2760f296edf38aa4533",
+      "release_sha256": "313b125218451c16d895c2ba6e5533875c55df5301a0a2760f296edf38aa4533",
+      "bytes": 7429,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/audit_dev_predictions.py",
+      "release_relative": "tools/audit_dev_predictions.py",
+      "source_sha256": "cb159732829228c666e8f5be4e52b7b917dfdd7e5c9a32c9890c4618863a4263",
+      "release_sha256": "cb159732829228c666e8f5be4e52b7b917dfdd7e5c9a32c9890c4618863a4263",
+      "bytes": 18019,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/audit_videos.py",
+      "release_relative": "tools/audit_videos.py",
+      "source_sha256": "353ab5b12627de16b9c25b580c1781d411919c9b54388ef92e2732cb0931e0d8",
+      "release_sha256": "353ab5b12627de16b9c25b580c1781d411919c9b54388ef92e2732cb0931e0d8",
+      "bytes": 18568,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/collect_dev_predictions.py",
+      "release_relative": "tools/collect_dev_predictions.py",
+      "source_sha256": "f30f086faacb652be40f15d2cc355d93986b09b8a1e03960398c5449af84b7ac",
+      "release_sha256": "f30f086faacb652be40f15d2cc355d93986b09b8a1e03960398c5449af84b7ac",
+      "bytes": 40717,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/collect_dev_work_areas.py",
+      "release_relative": "tools/collect_dev_work_areas.py",
+      "source_sha256": "98e69379fa60707fef784badc8cdf01997447282e06967ea86aa3b5f0702d8ec",
+      "release_sha256": "47e79dba310cfa19268f6c407177ea72fec2dfd7387b30927a747467f22278b2",
+      "bytes": 15183,
+      "change": "Default --p2-root is derived from this script location; all algorithms and explicit path arguments are unchanged",
+      "identical_bytes": false
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/diagnose_cache_components.py",
+      "release_relative": "tools/diagnose_cache_components.py",
+      "source_sha256": "0dfc6f4d5ec4c79c81724de8061c27127c9aa1aae56c68ea53e3a07ba548a958",
+      "release_sha256": "0dfc6f4d5ec4c79c81724de8061c27127c9aa1aae56c68ea53e3a07ba548a958",
+      "bytes": 7197,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/diagnose_cache_fidelity.py",
+      "release_relative": "tools/diagnose_cache_fidelity.py",
+      "source_sha256": "3e68916d03b6151788df66cef11fe224cbb77a87e3e30c570f97b38a97d83b22",
+      "release_sha256": "3e68916d03b6151788df66cef11fe224cbb77a87e3e30c570f97b38a97d83b22",
+      "bytes": 4888,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/diagnose_geometry_inverse.py",
+      "release_relative": "tools/diagnose_geometry_inverse.py",
+      "source_sha256": "4f0f14781cebb4c20e5c77e502975f41c12d1f35364f659cbfd74a4380930933",
+      "release_sha256": "4f0f14781cebb4c20e5c77e502975f41c12d1f35364f659cbfd74a4380930933",
+      "bytes": 7749,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/diagnose_saturation_inverse.py",
+      "release_relative": "tools/diagnose_saturation_inverse.py",
+      "source_sha256": "f5a7dbf55878577da79c4bd0c6d7524359d4225e19b5bc2a71c33701d47c4136",
+      "release_sha256": "f5a7dbf55878577da79c4bd0c6d7524359d4225e19b5bc2a71c33701d47c4136",
+      "bytes": 8033,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/env_probe.py",
+      "release_relative": "tools/env_probe.py",
+      "source_sha256": "4f0eb567cfb29f81d44d9cfacc08cad778d6934b18d71ba12d25466e1ab8b79d",
+      "release_sha256": "4f0eb567cfb29f81d44d9cfacc08cad778d6934b18d71ba12d25466e1ab8b79d",
+      "bytes": 2907,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/export_cache.py",
+      "release_relative": "tools/export_cache.py",
+      "source_sha256": "4d9f266c3d6abdc7695594ffaabfd5de09b4532948325876db151d86e48581e7",
+      "release_sha256": "4d9f266c3d6abdc7695594ffaabfd5de09b4532948325876db151d86e48581e7",
+      "bytes": 51239,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/inspect_pilot_confidence.py",
+      "release_relative": "tools/inspect_pilot_confidence.py",
+      "source_sha256": "d5400bca548187949d9ceda8d31243be9b18c1b20d3ea273fd7a1e9d958bce5d",
+      "release_sha256": "d5400bca548187949d9ceda8d31243be9b18c1b20d3ea273fd7a1e9d958bce5d",
+      "bytes": 2711,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/inventory_checkpoints.py",
+      "release_relative": "tools/inventory_checkpoints.py",
+      "source_sha256": "8951887e10a86edad7004dc8123e12e671fa124662102be8e85791fe61764256",
+      "release_sha256": "8951887e10a86edad7004dc8123e12e671fa124662102be8e85791fe61764256",
+      "bytes": 3590,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/prepare_data.py",
+      "release_relative": "tools/prepare_data.py",
+      "source_sha256": "7606360a996fce5825ec702c7cd6f50eb1c854de610cc08f8e76ebe7cd6d7d19",
+      "release_sha256": "7606360a996fce5825ec702c7cd6f50eb1c854de610cc08f8e76ebe7cd6d7d19",
+      "bytes": 15612,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/score_dev_p4.py",
+      "release_relative": "tools/score_dev_p4.py",
+      "source_sha256": "c236bafefef5b5228129479b524763356487bb9863bb17d765be36ed9a880fbb",
+      "release_sha256": "f1313b41805aaf66078d09bd86e85dcb055adc338be86b8f20435258660bf0d8",
+      "bytes": 38505,
+      "change": "Default --p2-root is derived from this script location; all algorithms and explicit path arguments are unchanged",
+      "identical_bytes": false
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/select_checkpoint.py",
+      "release_relative": "tools/select_checkpoint.py",
+      "source_sha256": "70aa01f59ca37932074744dc6895fd6bdbef7a45a481e8135324215744afdc98",
+      "release_sha256": "70aa01f59ca37932074744dc6895fd6bdbef7a45a481e8135324215744afdc98",
+      "bytes": 2077,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/train_p2.py",
+      "release_relative": "tools/train_p2.py",
+      "source_sha256": "4781277eb6552d63f33dd6e0e9415cfb2c041dc9b965dfa55ce211d050158bbf",
+      "release_sha256": "4781277eb6552d63f33dd6e0e9415cfb2c041dc9b965dfa55ce211d050158bbf",
+      "bytes": 9353,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/validate_exported_dev_cache.py",
+      "release_relative": "tools/validate_exported_dev_cache.py",
+      "source_sha256": "aca6c3a3b47ba7f70dc127d2b34efcd3382161b878e5423722e9713ee2315a70",
+      "release_sha256": "aca6c3a3b47ba7f70dc127d2b34efcd3382161b878e5423722e9713ee2315a70",
+      "bytes": 15151,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/validate_geometry_inverse_diagnostic.py",
+      "release_relative": "tools/validate_geometry_inverse_diagnostic.py",
+      "source_sha256": "acf3c5b078e2072d2ce7b53b4f9c7ef3f56d2dc064b4e5a641261517024c02d8",
+      "release_sha256": "acf3c5b078e2072d2ce7b53b4f9c7ef3f56d2dc064b4e5a641261517024c02d8",
+      "bytes": 5690,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/validate_normalized_fallback_diagnostic.py",
+      "release_relative": "tools/validate_normalized_fallback_diagnostic.py",
+      "source_sha256": "083d64afda5685fe29005500fea7ef7ba26d87f9e863488e2e70e6c8aa89abfd",
+      "release_sha256": "083d64afda5685fe29005500fea7ef7ba26d87f9e863488e2e70e6c8aa89abfd",
+      "bytes": 7976,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/validate_soft_masks.py",
+      "release_relative": "tools/validate_soft_masks.py",
+      "source_sha256": "3ef0dd24f5f6042c3af916d7bced848e88470dc631eaed59cfa76f806611ba1a",
+      "release_sha256": "3ef0dd24f5f6042c3af916d7bced848e88470dc631eaed59cfa76f806611ba1a",
+      "bytes": 18491,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "tools/verify_dev_reuse.py",
+      "release_relative": "tools/verify_dev_reuse.py",
+      "source_sha256": "2955888a23b2803b2f9fd6a870aa04d57dedf11472c60683ce17aec32b116620",
+      "release_sha256": "2955888a23b2803b2f9fd6a870aa04d57dedf11472c60683ce17aec32b116620",
+      "bytes": 11735,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "upstream_manifest.json",
+      "release_relative": "upstream_manifest.json",
+      "source_sha256": "f15ccea93c990834b4573bc650dff8fadba386e1af90bb89669fad6625727a5a",
+      "release_sha256": "f15ccea93c990834b4573bc650dff8fadba386e1af90bb89669fad6625727a5a",
+      "bytes": 3181,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": ".gitattributes",
+      "release_relative": "upstream/.gitattributes",
+      "source_sha256": "3e1faa3057c19026f6cf10d86399517acb0813c7c0c30a3b001bd55b47de264d",
+      "release_sha256": "3e1faa3057c19026f6cf10d86399517acb0813c7c0c30a3b001bd55b47de264d",
+      "bytes": 84,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": ".gitignore",
+      "release_relative": "upstream/.gitignore",
+      "source_sha256": "ff784f8434ade6352e3572e88069ea0fc8fed0fc742df6e4973bee0b62c30691",
+      "release_sha256": "ff784f8434ade6352e3572e88069ea0fc8fed0fc742df6e4973bee0b62c30691",
+      "bytes": 383,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "README.md",
+      "release_relative": "upstream/README.md",
+      "source_sha256": "14b323b540221d5bf6d4a9495d066f800a53cc0bb28a54683164a2e63df53e43",
+      "release_sha256": "14b323b540221d5bf6d4a9495d066f800a53cc0bb28a54683164a2e63df53e43",
+      "bytes": 452,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "configs/__init__.py",
+      "release_relative": "upstream/configs/__init__.py",
+      "source_sha256": "2a83cc2fd52c2ade550e35be7d372f5f84760b87391088e3960e2c6c7aa796d7",
+      "release_sha256": "2a83cc2fd52c2ade550e35be7d372f5f84760b87391088e3960e2c6c7aa796d7",
+      "bytes": 127,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "configs/paths.example.yaml",
+      "release_relative": "upstream/configs/paths.example.yaml",
+      "source_sha256": "ea76446283a0997c960fd2670f83a5d6b546c6fafe914e09aa7946af8b879340",
+      "release_sha256": "ea76446283a0997c960fd2670f83a5d6b546c6fafe914e09aa7946af8b879340",
+      "bytes": 123,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/README.md",
+      "release_relative": "upstream/data/README.md",
+      "source_sha256": "3f10146c0f3c47a4f9686314eabc0cc62b2bdebaf62c13bc1f87bc349539620c",
+      "release_sha256": "3f10146c0f3c47a4f9686314eabc0cc62b2bdebaf62c13bc1f87bc349539620c",
+      "bytes": 1119,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/__init__.py",
+      "release_relative": "upstream/data/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/build_manifests.py",
+      "release_relative": "upstream/data/build_manifests.py",
+      "source_sha256": "9a9b6d592192d4466afbe0b9927674cd6e0ce6e6ca1dbc7c08000d2d5da01209",
+      "release_sha256": "9a9b6d592192d4466afbe0b9927674cd6e0ce6e6ca1dbc7c08000d2d5da01209",
+      "bytes": 15321,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/.gitkeep",
+      "release_relative": "upstream/data/manifests/.gitkeep",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/dev_videos.txt",
+      "release_relative": "upstream/data/manifests/dev_videos.txt",
+      "source_sha256": "c1ac9c74f5b0668ec56844deecfd63bff01badcb5f4ce7cc298c40405ab66c6d",
+      "release_sha256": "c1ac9c74f5b0668ec56844deecfd63bff01badcb5f4ce7cc298c40405ab66c6d",
+      "bytes": 196,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/frames_all.csv",
+      "release_relative": "upstream/data/manifests/frames_all.csv",
+      "source_sha256": "5107e6f19e7193290d29159fe5e1a27d1ca56b7e49695a1d557e2953d7a77a57",
+      "release_sha256": "5107e6f19e7193290d29159fe5e1a27d1ca56b7e49695a1d557e2953d7a77a57",
+      "bytes": 1200930,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/frames_index.csv",
+      "release_relative": "upstream/data/manifests/frames_index.csv",
+      "source_sha256": "36cd9a555c625b4e6ecbf74c802468a8d4d81baff0cf859968307c36e8fef2fb",
+      "release_sha256": "36cd9a555c625b4e6ecbf74c802468a8d4d81baff0cf859968307c36e8fef2fb",
+      "bytes": 426433,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/pdf_check.csv",
+      "release_relative": "upstream/data/manifests/pdf_check.csv",
+      "source_sha256": "5915c8da3e7f09ee6b2b89b7fbd990edd166367d076bbdc5b31d554b43ce16c5",
+      "release_sha256": "5915c8da3e7f09ee6b2b89b7fbd990edd166367d076bbdc5b31d554b43ce16c5",
+      "bytes": 1626,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/single_rip_val.txt",
+      "release_relative": "upstream/data/manifests/single_rip_val.txt",
+      "source_sha256": "482d4b87be5127657815811759493b85609c3b0e2acba96932d53c283f03b7cb",
+      "release_sha256": "482d4b87be5127657815811759493b85609c3b0e2acba96932d53c283f03b7cb",
+      "bytes": 132,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/val_videos.txt",
+      "release_relative": "upstream/data/manifests/val_videos.txt",
+      "source_sha256": "7f669cbebfa6139225ccbf4766b5bf416d3e4c8f5e624bcaa739b9e9764fa685",
+      "release_sha256": "7f669cbebfa6139225ccbf4766b5bf416d3e4c8f5e624bcaa739b9e9764fa685",
+      "bytes": 348,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/videos.csv",
+      "release_relative": "upstream/data/manifests/videos.csv",
+      "source_sha256": "f46af188e4e8042e5a31c3ba80e7b78032e0bcad263fd43b140a1279ca7464b9",
+      "release_sha256": "f46af188e4e8042e5a31c3ba80e7b78032e0bcad263fd43b140a1279ca7464b9",
+      "bytes": 10281,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/yolo_dev_images.txt",
+      "release_relative": "upstream/data/manifests/yolo_dev_images.txt",
+      "source_sha256": "d9341e73e3034b75ef96b3e795b567d47de414063fab437f2be69d9020959792",
+      "release_sha256": "d9341e73e3034b75ef96b3e795b567d47de414063fab437f2be69d9020959792",
+      "bytes": 83130,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "data/manifests/yolo_train_images.txt",
+      "release_relative": "upstream/data/manifests/yolo_train_images.txt",
+      "source_sha256": "f2f1d1136b463f304d2e613f86dbcb4010d5f17755b1cd7b7865f5fd93f1fae8",
+      "release_sha256": "f2f1d1136b463f304d2e613f86dbcb4010d5f17755b1cd7b7865f5fd93f1fae8",
+      "bytes": 428745,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "eval/__init__.py",
+      "release_relative": "upstream/eval/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "eval/temporal_metrics.py",
+      "release_relative": "upstream/eval/temporal_metrics.py",
+      "source_sha256": "0f581ea68c008461bcc8464eeb318d35c1177edac835ba9dfe5b0ab9650f087b",
+      "release_sha256": "0f581ea68c008461bcc8464eeb318d35c1177edac835ba9dfe5b0ab9650f087b",
+      "bytes": 2636,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "model/__init__.py",
+      "release_relative": "upstream/model/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "pytest.ini",
+      "release_relative": "upstream/pytest.ini",
+      "source_sha256": "c8a89c8b33b5dac489faa5c6c782391014a67450b07444b49894e4d712751693",
+      "release_sha256": "c8a89c8b33b5dac489faa5c6c782391014a67450b07444b49894e4d712751693",
+      "bytes": 41,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "report/figures/.gitkeep",
+      "release_relative": "upstream/report/figures/.gitkeep",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "requirements.txt",
+      "release_relative": "upstream/requirements.txt",
+      "source_sha256": "f161e292751864b92e6b5810361dcf4c91cdf44d4ebee086684e4b90a10cb27c",
+      "release_sha256": "f161e292751864b92e6b5810361dcf4c91cdf44d4ebee086684e4b90a10cb27c",
+      "bytes": 325,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "scripts/.gitkeep",
+      "release_relative": "upstream/scripts/.gitkeep",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "scripts/download_ripvis.py",
+      "release_relative": "upstream/scripts/download_ripvis.py",
+      "source_sha256": "d8b6605622d28b6405568681d614d3c480087e2cabf303ce579872b110f15387",
+      "release_sha256": "d8b6605622d28b6405568681d614d3c480087e2cabf303ce579872b110f15387",
+      "bytes": 2460,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "temporal/__init__.py",
+      "release_relative": "upstream/temporal/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "tests/__init__.py",
+      "release_relative": "upstream/tests/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "pinned_P1_snapshot",
+      "source_relative": "tests/test_temporal_metrics.py",
+      "release_relative": "upstream/tests/test_temporal_metrics.py",
+      "source_sha256": "f9c1f48439078af385b61dc713b2136899a5b5fc03a2a556a989ef22740d9903",
+      "release_sha256": "f9c1f48439078af385b61dc713b2136899a5b5fc03a2a556a989ef22740d9903",
+      "bytes": 2332,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/p2/__init__.py",
+      "release_relative": "reader/p2/__init__.py",
+      "source_sha256": "2b3702783dc853e1990bc3979990f6a1fa7003350975d5f40de24abbf952f1af",
+      "release_sha256": "2b3702783dc853e1990bc3979990f6a1fa7003350975d5f40de24abbf952f1af",
+      "bytes": 84,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/p2/cache_io.py",
+      "release_relative": "reader/p2/cache_io.py",
+      "source_sha256": "77b14aa00fb5ebaee22448fb0a9bf040dfc90db2ebc20f889904019cdb7d06ed",
+      "release_sha256": "77b14aa00fb5ebaee22448fb0a9bf040dfc90db2ebc20f889904019cdb7d06ed",
+      "bytes": 6339,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/p2/t0_output.py",
+      "release_relative": "reader/p2/t0_output.py",
+      "source_sha256": "1a578f1dada74423bb053489a50991f16733a41eaea6903d3c31ac8d3ae1163a",
+      "release_sha256": "1a578f1dada74423bb053489a50991f16733a41eaea6903d3c31ac8d3ae1163a",
+      "bytes": 7934,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/p5_evaluator.py",
+      "release_relative": "reader/p5_evaluator.py",
+      "source_sha256": "b539ae46869407ffdfce9a8d4582d0a72bd722bdead816453d4cc706ab49f8c7",
+      "release_sha256": "b539ae46869407ffdfce9a8d4582d0a72bd722bdead816453d4cc706ab49f8c7",
+      "bytes": 9398,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/read_final_t0.py",
+      "release_relative": "reader/read_final_t0.py",
+      "source_sha256": "7bf937672d2633119a8766cfcb58eb309f7a05652bc47746b96cb86eeb9d3910",
+      "release_sha256": "7bf937672d2633119a8766cfcb58eb309f7a05652bc47746b96cb86eeb9d3910",
+      "bytes": 4384,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/read_raw_cache.py",
+      "release_relative": "reader/read_raw_cache.py",
+      "source_sha256": "176e9e95738670391d08378e41a8bd29d132bc9d2f4bf55601e5b71ab7f5905c",
+      "release_sha256": "176e9e95738670391d08378e41a8bd29d132bc9d2f4bf55601e5b71ab7f5905c",
+      "bytes": 1786,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/requirements-reader.txt",
+      "release_relative": "reader/requirements-reader.txt",
+      "source_sha256": "f7cfece23c53d73846818a2af147d3202420369a38697f9b3476e812bbfb3f17",
+      "release_sha256": "f7cfece23c53d73846818a2af147d3202420369a38697f9b3476e812bbfb3f17",
+      "bytes": 390,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/restoration_v4/DEPENDENCIES.txt",
+      "release_relative": "reader/restoration_v4/DEPENDENCIES.txt",
+      "source_sha256": "0898ff05cc0594909c14892843c1a9013cdee47337cc70787378b5ba97df7396",
+      "release_sha256": "0898ff05cc0594909c14892843c1a9013cdee47337cc70787378b5ba97df7396",
+      "bytes": 490,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/restoration_v4/SPEC.json",
+      "release_relative": "reader/restoration_v4/SPEC.json",
+      "source_sha256": "267aff4f4113d4c6da6145cef67f239377af67d91d7b473bc7bba7e0bf40ad32",
+      "release_sha256": "267aff4f4113d4c6da6145cef67f239377af67d91d7b473bc7bba7e0bf40ad32",
+      "bytes": 2830,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/restoration_v4/cache_io.py",
+      "release_relative": "reader/restoration_v4/cache_io.py",
+      "source_sha256": "77b14aa00fb5ebaee22448fb0a9bf040dfc90db2ebc20f889904019cdb7d06ed",
+      "release_sha256": "77b14aa00fb5ebaee22448fb0a9bf040dfc90db2ebc20f889904019cdb7d06ed",
+      "bytes": 6339,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/restoration_v4/read_v4.py",
+      "release_relative": "reader/restoration_v4/read_v4.py",
+      "source_sha256": "6f039fa237136fa184add1400b9bf21257ade27e564bb516915333d237bcac26",
+      "release_sha256": "6f039fa237136fa184add1400b9bf21257ade27e564bb516915333d237bcac26",
+      "bytes": 7371,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/restoration_v4/restore.py",
+      "release_relative": "reader/restoration_v4/restore.py",
+      "source_sha256": "e0f8b2e7ef385266b3e9188ba031f3bb49e618051b39975c8223199183f9fa2b",
+      "release_sha256": "e0f8b2e7ef385266b3e9188ba031f3bb49e618051b39975c8223199183f9fa2b",
+      "bytes": 16863,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "verified_handoff",
+      "source_relative": "reader/restoration_v4/soft_masks_v3.py",
+      "release_relative": "reader/restoration_v4/soft_masks_v3.py",
+      "source_sha256": "9021ae722b5e33437e3571c679808b1aae8d2afd90a387f6bfb5ecc9339c101f",
+      "release_sha256": "9021ae722b5e33437e3571c679808b1aae8d2afd90a387f6bfb5ecc9339c101f",
+      "bytes": 28338,
+      "change": "Byte-identical source copy",
+      "identical_bytes": true
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "configs/training.yaml",
+      "release_relative": "configs/training.yaml",
+      "source_sha256": "7d4e5f8abbc735aac214b1a5a56f4c59314f0ee310be686d9dd181609c2710c9",
+      "release_sha256": "9185598435434e1af75805e2acb406248c5803b7613a1f02e9a86da102988646",
+      "bytes": 139,
+      "change": "Only dataset-list path strings replaced by relative names; regenerate with prepare_data.py before any independently authorized training",
+      "identical_bytes": false
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "configs/pilot.yaml",
+      "release_relative": "configs/pilot.yaml",
+      "source_sha256": "7c60c6dc4d6962c27fec874602131a5f89c889159833d783025c77c8605f84a5",
+      "release_sha256": "a318bc47887a6d4a0bb1af275d7f2c53d1049b08db96394d23073dfba716f33f",
+      "bytes": 142,
+      "change": "Only dataset-list path strings replaced by relative names; regenerate with prepare_data.py before any independently authorized training",
+      "identical_bytes": false
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "run_python.sh",
+      "release_relative": "run_python.sh",
+      "source_sha256": "1227ba8bd1fd755beff9240f9ffd346946d9dab6d737f15c77e509f23aa7b6f0",
+      "release_sha256": "cbc14ea9900e4b93d008db2ba048b7ea0f72f3f55e46f52a3a26ed4e2b38b72d",
+      "bytes": 732,
+      "change": "Infer the package root and use caller-selected Python; numerical runtime flags unchanged",
+      "identical_bytes": false
+    },
+    {
+      "source_kind": "frozen_snapshot",
+      "source_relative": "run_tests.sh",
+      "release_relative": "run_tests.sh",
+      "source_sha256": "b2faf543d98679b03908499c671db28a0e4d912d9c71509772154953e9ecb157",
+      "release_sha256": "93a423a444536a9722fd72961c3d7800feb4620638b2c553f5b0722bf3cddaaa",
+      "bytes": 156,
+      "change": "Use caller Python and local package tests; no original-machine dependency directory",
+      "identical_bytes": false
+    }
+  ],
+  "source_file_count": 86,
+  "changed_copy_count": 6,
+  "no_training_inference_search_or_cache_changes": true,
+  "generated_files": [
+    "configs/final.yaml",
+    "configs/frozen_release.json",
+    "reader/restoration_v4/BUNDLE_SHA256.json",
+    "reader/restoration_v4/QUALIFICATION.json",
+    "reader/restoration_v4/README.md",
+    "requirements-core.txt",
+    "requirements-raw.txt",
+    "requirements-reader.txt",
+    "requirements-restoration.txt",
+    "requirements-test.txt"
+  ],
+  "legacy_tools_scope": "Historical reproduction utilities preserve their original safety gates. Full source-video preparation, model training, scoring or export is not performed by this release task. Downloaded cache reading is portable and separately tested.",
+  "generated_file_hashes": [
+    {
+      "release_relative": "configs/final.yaml",
+      "bytes": 1060,
+      "sha256": "4934e2b949df0432314a51d0ac8d606aac1813b3a7d5f51144dcc28264a212b6"
+    },
+    {
+      "release_relative": "configs/frozen_release.json",
+      "bytes": 4386,
+      "sha256": "edab24b1b0b4364d7bdd762c6f5dc05dc01bb13db89dd8e1ba365af697cd52f4"
+    },
+    {
+      "release_relative": "reader/restoration_v4/BUNDLE_SHA256.json",
+      "bytes": 1326,
+      "sha256": "e436964d9053861ce47ac9a1459a3c3fcc4d8baeee89d8d024ccb5ef6a8902b7"
+    },
+    {
+      "release_relative": "reader/restoration_v4/QUALIFICATION.json",
+      "bytes": 2008,
+      "sha256": "b5721b76d55893c784f9e3b4347963b62705f044a54e92114e286cfcb88c9251"
+    },
+    {
+      "release_relative": "reader/restoration_v4/README.md",
+      "bytes": 2140,
+      "sha256": "dfba9edd5cd1177596c35594f0a013b9dce3b3420d0ec4834db58507ecf47c1b"
+    },
+    {
+      "release_relative": "requirements-core.txt",
+      "bytes": 375,
+      "sha256": "463055d936de574ebf334a515e405f9c9cfc31b485952e6e891f953f7bf9d68e"
+    },
+    {
+      "release_relative": "requirements-raw.txt",
+      "bytes": 47,
+      "sha256": "bb2085100b64687efef3c6ab14fcb48b68f9a16c2137d40f97dab9e18652feec"
+    },
+    {
+      "release_relative": "requirements-reader.txt",
+      "bytes": 146,
+      "sha256": "4167e0961d667fe959da89e366b0edd7e11393dee1a716eaaf0e5f9f078eec1f"
+    },
+    {
+      "release_relative": "requirements-restoration.txt",
+      "bytes": 104,
+      "sha256": "f960c63d1dae45b330a06f1b198cb0af82f915d5d9425a4111f763ae4e01c362"
+    },
+    {
+      "release_relative": "requirements-test.txt",
+      "bytes": 63,
+      "sha256": "a8faa96c13dae4486a16f4b0e6bc56d9316edcc82f9e573751628114cb194706"
+    }
+  ],
+  "ast_check": "All shipped Python files parsed; the two adapted Python tools have only the declared package-root default AST change.",
+  "preserved_absolute_reference": {
+    "file": "reader/restoration_v4/restore.py",
+    "reason": "Qualified bytes preserved; portable read_v4.py overrides this reference in memory after hash verification.",
+    "entrypoint": "reader/restoration_v4/read_v4.py"
+  },
+  "cpu_publication_checks": {
+    "status": "PASS",
+    "scope": "Existing unit tests and read-only raw/T0 consumer smoke; no inference or selection",
+    "evidence_sha256": "c3b9ed7a43cc071413228bb1ff9cf64da4fc25138a22ae26f6d23ae9058dc935",
+    "raw_candidates": 2,
+    "retained_t0_predictions": 1,
+    "original_dev_cache_unchanged": true,
+    "model_inference_executed": false,
+    "v4_executed": false
+  },
+  "publication_documentation_correction": {
+    "file": "reader/restoration_v4/README.md",
+    "change": "Optional v4 example uses the known RipVIS-097 frame 822 candidate 2 sample rather than an unconfirmed RipVIS-031 candidate.",
+    "algorithm_or_cache_change": false
+  }
+}

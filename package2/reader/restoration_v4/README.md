@@ -27,9 +27,8 @@ memory to the adjacent, byte-identical `soft_masks_v3.py`. Use `read_v4.py` for
 portable access; the unchanged restorer itself retains its original reference
 path. This is a relocation adapter, not a new reconstruction algorithm.
 
-`QUALIFICATION.json` is an English publication summary of the existing
-qualification, with original evidence hashes. It is a new release file, not
-the original qualification record. The original v3 actual-video test remains
+`QUALIFICATION.json` records the existing qualification and original evidence
+hashes. The original v3 actual-video test remains
 FAIL: 1 of 149 candidates fell below the unchanged 0.98 IoU gate (minimum
 0.9707612981498331). The later optional v4 qualification passed two disjoint
 50-frame sets, 149 candidates each, with minimum IoUs 0.9938299609835768 and

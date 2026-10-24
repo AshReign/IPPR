@@ -3,7 +3,7 @@
 No model, GPU, GT, or legacy inverse is used. The cache retains raw candidates;
 the adapter applies the frozen .10 confidence, working-area filter, stable score
 order and pinned P5 encode. Supply the caller's real COCO image_id explicitly.
-This example does not implement T1/TCA or authorize publishing their outputs.
+This example does not implement T1/TCA.
 """
 from __future__ import annotations
 import argparse

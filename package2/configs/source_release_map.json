@@ -19,10 +19,10 @@
       "source_relative": "configs/selection_p4_protocol.json",
       "release_relative": "configs/selection_p4_protocol.json",
       "source_sha256": "5a2aac1b206e2a07fc9252a2295f23630790b945742d5295335c8a3af5e9b687",
-      "release_sha256": "5a2aac1b206e2a07fc9252a2295f23630790b945742d5295335c8a3af5e9b687",
-      "bytes": 3253,
-      "change": "Byte-identical source copy",
-      "identical_bytes": true
+      "release_sha256": "5b9a1b4fbf7c75a189775c0bc76225bed773c4e6792d70ef287c530bf516798d",
+      "bytes": 2891,
+      "change": "Non-algorithm workflow metadata omitted; all algorithm parameters unchanged. Historical score records use the original source_sha256.",
+      "identical_bytes": false
     },
     {
       "source_kind": "frozen_snapshot",
@@ -399,10 +399,10 @@
       "source_relative": "upstream_manifest.json",
       "release_relative": "upstream_manifest.json",
       "source_sha256": "f15ccea93c990834b4573bc650dff8fadba386e1af90bb89669fad6625727a5a",
-      "release_sha256": "f15ccea93c990834b4573bc650dff8fadba386e1af90bb89669fad6625727a5a",
-      "bytes": 3181,
-      "change": "Byte-identical source copy",
-      "identical_bytes": true
+      "release_sha256": "0b3e98568d30970f85c71aa788a56e6e2022c45b9829df2a48613235292b696e",
+      "bytes": 3171,
+      "change": "Acquisition-method description generalized; repository, branch, commit, archive hash and source file hashes unchanged.",
+      "identical_bytes": false
     },
     {
       "source_kind": "pinned_P1_snapshot",
@@ -739,10 +739,10 @@
       "source_relative": "reader/read_final_t0.py",
       "release_relative": "reader/read_final_t0.py",
       "source_sha256": "7bf937672d2633119a8766cfcb58eb309f7a05652bc47746b96cb86eeb9d3910",
-      "release_sha256": "7bf937672d2633119a8766cfcb58eb309f7a05652bc47746b96cb86eeb9d3910",
-      "bytes": 4384,
-      "change": "Byte-identical source copy",
-      "identical_bytes": true
+      "release_sha256": "c81493dfede4464ae893564429c9b630a25735df7846a559780454294b1e5842",
+      "bytes": 4346,
+      "change": "Documentation-only module docstring change; executable AST unchanged.",
+      "identical_bytes": false
     },
     {
       "source_kind": "verified_handoff",
@@ -866,7 +866,7 @@
     }
   ],
   "source_file_count": 86,
-  "changed_copy_count": 6,
+  "changed_copy_count": 9,
   "no_training_inference_search_or_cache_changes": true,
   "generated_files": [
     "configs/final.yaml",
@@ -880,12 +880,12 @@
     "requirements-restoration.txt",
     "requirements-test.txt"
   ],
-  "legacy_tools_scope": "Historical reproduction utilities preserve their original safety gates. Full source-video preparation, model training, scoring or export is not performed by this release task. Downloaded cache reading is portable and separately tested.",
+  "legacy_tools_scope": "Historical reproduction utilities preserve their original safety gates. Downloaded cache reading is portable and separately tested.",
   "generated_file_hashes": [
     {
       "release_relative": "configs/final.yaml",
-      "bytes": 1060,
-      "sha256": "4934e2b949df0432314a51d0ac8d606aac1813b3a7d5f51144dcc28264a212b6"
+      "bytes": 979,
+      "sha256": "272f951dbaa32dde1fb0a029a912dbeb9378b82a2392fd19cc14aee4c46f5a60"
     },
     {
       "release_relative": "configs/frozen_release.json",
@@ -895,17 +895,17 @@
     {
       "release_relative": "reader/restoration_v4/BUNDLE_SHA256.json",
       "bytes": 1326,
-      "sha256": "e436964d9053861ce47ac9a1459a3c3fcc4d8baeee89d8d024ccb5ef6a8902b7"
+      "sha256": "98634bcc6d0d75828d077f6f0178228bf087ffc59e7103df4ce7238724ffc883"
     },
     {
       "release_relative": "reader/restoration_v4/QUALIFICATION.json",
-      "bytes": 2008,
-      "sha256": "b5721b76d55893c784f9e3b4347963b62705f044a54e92114e286cfcb88c9251"
+      "bytes": 2010,
+      "sha256": "1fc9d2b1b071e897f806b6d46ee5fba7a27aab554cb9a815e82ee330c02096b0"
     },
     {
       "release_relative": "reader/restoration_v4/README.md",
-      "bytes": 2140,
-      "sha256": "dfba9edd5cd1177596c35594f0a013b9dce3b3420d0ec4834db58507ecf47c1b"
+      "bytes": 2044,
+      "sha256": "cdab3f862dc7a18e764e5ac8bdf9a8aff92d44cd5b4a5b71e52c40030c38b580"
     },
     {
       "release_relative": "requirements-core.txt",
@@ -933,7 +933,7 @@
       "sha256": "a8faa96c13dae4486a16f4b0e6bc56d9316edcc82f9e573751628114cb194706"
     }
   ],
-  "ast_check": "All shipped Python files parsed; the two adapted Python tools have only the declared package-root default AST change.",
+  "ast_check": "All shipped Python files parsed; executable AST changes remain limited to the two declared package-root defaults. The T0 reader module docstring differs without an executable AST change.",
   "preserved_absolute_reference": {
     "file": "reader/restoration_v4/restore.py",
     "reason": "Qualified bytes preserved; portable read_v4.py overrides this reference in memory after hash verification.",
@@ -948,10 +948,5 @@
     "original_dev_cache_unchanged": true,
     "model_inference_executed": false,
     "v4_executed": false
-  },
-  "publication_documentation_correction": {
-    "file": "reader/restoration_v4/README.md",
-    "change": "Optional v4 example uses the known RipVIS-097 frame 822 candidate 2 sample rather than an unconfirmed RipVIS-031 candidate.",
-    "algorithm_or_cache_change": false
   }
 }

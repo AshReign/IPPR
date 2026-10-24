@@ -1,7 +1,6 @@
 {
   "schema": "p2-english-release-evidence-index-v1",
   "release_version": "IPPR_P2_Formal_EN_20261024_r1",
-  "status": "Derived summaries only; original sealed bytes preserved",
   "logical_roots": {
     "sealed_final": "Original finalized P2 delivery",
     "sealed_workspace": "Original final-delivery verification workspace"
@@ -83,5 +82,5 @@
       "sha256": "f7e8965b7535cfbe693bd9a17b1233b35296328f0478fdb1b42bf342a6819d3d"
     }
   ],
-  "publication_note": "This source-evidence index is not the release payload checksum manifest or a remote-upload receipt."
+  "publication_note": "This source-evidence index is not the release payload checksum manifest."
 }

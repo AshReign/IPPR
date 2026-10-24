@@ -1,5 +1,4 @@
 # Portable publication descriptor; original freeze identity is in frozen_release.json.
-# This file is not a replacement for the original exporter authorization record.
 checkpoint: weights/epoch5.pt
 checkpoint_sha256: 278ba795436c1299621b68a6f775a4af8b284afcab9c242384abff877a6906ca
 completed_epoch: 6

@@ -22,7 +22,7 @@ All paths below are relative to the release's `package2/` root. The GitHub sourc
 | `requirements-raw.txt` | Minimal Python/NumPy raw-reader dependency |
 | `requirements-core.txt`, `requirements-test.txt` | Full P2 and CPU test dependencies; PyTorch wheel choice documented separately |
 | `run_python.sh`, `run_tests.sh` | Portable interpreter/root launchers |
-| `reports/release_summary.json` | Compact English values derived from sealed results |
+| `reports/release_summary.json` | Completed P2 results summary |
 | `reports/training_summary.json` | Compact formal training settings and epoch measurements |
 | `reports/publication_checks.json` | 140 existing CPU unit tests and one raw/T0 portability smoke check, separate from model-quality gates |
 | `reports/dev_selection_ranking.csv` | All 170 ranked checkpoint/confidence combinations, original bytes preserved |
@@ -34,6 +34,4 @@ All paths below are relative to the release's `package2/` root. The GitHub sourc
 | `manifests/DEV_PACKAGE.json` | Generated inventory/checksums for the dev ZIP payload |
 | `manifests/FINAL_VAL_PACKAGE.json` | Generated inventory/checksums for the final-val ZIP payload |
 
-The external `PUBLICATION_RECEIPT.json` accompanies the published release and records verified remote IDs/URLs, the team branch commit, artifact sizes and validation limits. The ZIP's own hash belongs outside that ZIP to avoid a circular checksum. Standalone `WEIGHTS_SHA256.json` identifies the unchanged checkpoint.
-
-The original Chinese reports and historical evidence are retained in the sealed local delivery. They are not rewritten or relabelled, and they are not competing default instructions inside these essential English packages.
+The ZIP's own hash belongs outside that ZIP to avoid a circular checksum. Standalone `WEIGHTS_SHA256.json` identifies the unchanged checkpoint.

@@ -9,13 +9,13 @@
     },
     {
       "path": "QUALIFICATION.json",
-      "bytes": 2008,
-      "sha256": "b5721b76d55893c784f9e3b4347963b62705f044a54e92114e286cfcb88c9251"
+      "bytes": 2010,
+      "sha256": "1fc9d2b1b071e897f806b6d46ee5fba7a27aab554cb9a815e82ee330c02096b0"
     },
     {
       "path": "README.md",
-      "bytes": 2140,
-      "sha256": "dfba9edd5cd1177596c35594f0a013b9dce3b3420d0ec4834db58507ecf47c1b"
+      "bytes": 2044,
+      "sha256": "cdab3f862dc7a18e764e5ac8bdf9a8aff92d44cd5b4a5b71e52c40030c38b580"
     },
     {
       "path": "SPEC.json",

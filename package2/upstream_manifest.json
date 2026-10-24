@@ -3,7 +3,7 @@
   "branch": "main",
   "commit": "704f724146792482359ebaa2235cde5c6a41b059",
   "archive_sha256": "8888c08b0f3e8389a4dbcd329377ccc55a2ff8d6a115043856b82202008670f6",
-  "acquired_via": "authenticated Chrome GitHub Download ZIP",
+  "acquired_via": "Pinned upstream source archive",
   "files": {
     ".gitattributes": "3e1faa3057c19026f6cf10d86399517acb0813c7c0c30a3b001bd55b47de264d",
     ".gitignore": "ff784f8434ade6352e3572e88069ea0fc8fed0fc742df6e4973bee0b62c30691",

@@ -15,8 +15,8 @@ Keep final-val separate from dev and do not use final-val labels for tuning.
 
 | File | Bytes | SHA256 |
 | --- | ---: | --- |
-| `IPPR_P2_Formal_EN_20261024_r1_dev.zip` | 1420037345 | `83f545c35c5d3b36f6e2c757ffac4459fa01e9b29db30369680e3bcd25c3705f` |
-| `IPPR_P2_Formal_EN_20261024_r1_final-val.zip` | 1868180149 | `c252692d49d40df543468a46f1989251e0f252a3b207f61891f59469f2bc3bac` |
+| `IPPR_P2_Formal_EN_20261024_r1_dev.zip` | 1420036179 | `b1c9709495e01e2f3fda6d33a6c8fdf47715eff9f3b0aa4f36402812cf007ed0` |
+| `IPPR_P2_Formal_EN_20261024_r1_final-val.zip` | 1868178975 | `92cd3f2166d5b325bd2e3a2717d56cda94e6d3c6438c665b61ac340f50e39adf` |
 | `epoch5.pt` | 17628845 | `278ba795436c1299621b68a6f775a4af8b284afcab9c242384abff877a6906ca` |
 
 The folder also includes `IPPR_P2_Formal_EN_20261024_r1_dev_CHECKSUMS.json`,

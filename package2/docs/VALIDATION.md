@@ -59,4 +59,4 @@ Prediction/transfer includes first-call warmup and CPU transfer; it is not pure 
 
 The English source payload passed **140 existing CPU unit tests**. The raw and T0 consumer commands read RipVIS-031 frame 0 / image ID 2904 and returned **2 raw candidates / 1 T0 prediction**; the SQLite SHA256 was unchanged. No v4, model inference, GT loading or dependency installation was performed by these checks. [publication_checks.json](../reports/publication_checks.json) records their scope and source-log hashes. This finite reader check is separate from the retained native, inverse and shared-encoder gates above.
 
-Original evidence hashes are listed in [evidence_index.json](../reports/evidence_index.json). Publication archive CRC/SHA checks, remote sizes and any remote download verification have their own release receipt; they are separate from these model-quality gates.
+Original evidence hashes are listed in [evidence_index.json](../reports/evidence_index.json). Archive CRC/SHA checks and download verification are separate from these model-quality gates.

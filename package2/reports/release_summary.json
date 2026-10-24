@@ -1,7 +1,6 @@
 {
   "schema": "p2-english-release-summary-v1",
   "release_version": "IPPR_P2_Formal_EN_20261024_r1",
-  "derivation": "Read-only English summary of completed, sealed evidence; no new model experiment.",
   "model": {
     "file": "weights/epoch5.pt",
     "completed_epoch": 6,
@@ -15,7 +14,7 @@
     "p5_commit": "2fa7e07ab42cceb49ac149a391c05df0dcc63a1a",
     "original_p2_source_snapshot_commit": "c221d204dae9d24188c72dd0fa7bd8e8e7313c94",
     "original_snapshot_has_team_remote": false,
-    "team_publication_commit_location": "PUBLICATION_RECEIPT.json supplied with the published release; or git rev-parse HEAD in the team checkout"
+    "team_publication_commit_location": "git rev-parse HEAD in the team checkout"
   },
   "original_freeze_sha256": "6bddf2e07cae81ee2541c8c5bef8b2ad78dbbd698bd207f161f34eee6ae1aa7e",
   "original_sealed_final_manifest_sha256": "a919649a76a8b4157b91213231c96fb4de962fcb590694a3c021fa6afd9f07f4",

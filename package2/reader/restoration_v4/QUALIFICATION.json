@@ -33,5 +33,5 @@
   "default_raw_and_t0_readers_use_v4": false,
   "lossless_or_universal_recovery_claimed": false,
   "source_relocation": "The unchanged adapter verifies source hashes and sets BASE_SOURCE in memory to adjacent soft_masks_v3.py. Original restorer bytes are preserved.",
-  "release_action": "Publication and CPU consumer checks only; original native and qualification validations were not rerun."
+  "release_action": "Original native and qualification validation results are reported here; CPU consumer checks are separate."
 }

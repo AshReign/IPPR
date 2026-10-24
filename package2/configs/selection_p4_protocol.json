@@ -1,8 +1,6 @@
 {
   "schema": "p2-dev-selection-protocol-v2-p4-confirmed",
-  "status": "approved_output_path_selection_only_not_frozen",
   "split": "dev",
-  "authorization": "User explicitly requested implementing the final confirmed Ngoc/P4 path shown in the two preserved screenshots; report before any freeze.",
   "p4_branch": "package4-t0-t1-tuning",
   "p4_commit": "1004e203b7f9e4e3b2f3dcf740cc4983369fde51",
   "p5_commit": "2fa7e07ab42cceb49ac149a391c05df0dcc63a1a",
@@ -35,6 +33,5 @@
   },
   "clarification": "Earlier screenshot text mentioned original-resolution area; later explicit align-with-Ngoc confirmation and actual P4 implementation select working-resolution area. No equivalence of the two area scales is assumed.",
   "p4_float_boundary": "P4 Python-float threshold comparison is not copied as a second filter; preserve existing P2 float32-inclusive semantics and document actual/synthetic comparisons.",
-  "final_val": "never used for selection",
-  "not_authorized_in_this_run": ["formal freeze", "full video cache export", "upload or push", "retraining", "T1/TCA parameter selection"]
+  "final_val": "never used for selection"
 }

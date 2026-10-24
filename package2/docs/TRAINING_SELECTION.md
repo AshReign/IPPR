@@ -30,7 +30,7 @@ Selection used the confirmed Ngoc/P4 T0 path and fixed P5 evaluator commit `2fa7
 | Annotated frames | 2,421 |
 | No-rip annotated frames / frame false alarms | 272 / 74 |
 
-The complete 170-row ranking is [dev_selection_ranking.csv](../reports/dev_selection_ranking.csv), copied without changing its bytes. No new model selection or scoring was run to publish this handoff. User confirmation authorized the formal freeze of completed epoch 6 / confidence 0.10.
+The complete 170-row ranking is [dev_selection_ranking.csv](../reports/dev_selection_ranking.csv), copied without changing its bytes. No new model selection or scoring was run to publish this handoff. The frozen release uses completed epoch 6 / confidence 0.10.
 
 ## JPEG selection versus full MP4 caches
 
@@ -42,4 +42,4 @@ Full 17-video dev caches were completed and qualified before the 30 final-val ca
 
 The original 320-image, two-epoch pilot produced only 24 optimizer updates. Checked pre-NMS confidences were below the fixed 0.1 threshold, supporting an undertrained pilot rather than a demonstrated export defect. Its empty predictions and failed historical gates remain preserved. The first useful integration handoff later used `epoch0.pt` / CPU / v2 on three dev videos (998 frames, 3,156 candidates), explicitly as a temporary model. Neither pilot is the frozen formal release.
 
-All historical checkpoints, original logs, detailed per-candidate diagnostics and Chinese records remain in the sealed local evidence. They are not mixed into the essential teammate download bundles. The release includes compact training and validation summaries and their original source hashes; supplemental evidence can be distributed separately.
+The release includes training and validation summaries and their original source hashes.

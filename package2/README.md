@@ -14,7 +14,6 @@ Download the **dev package first** for P3/P4 integration, then final-val when re
 | `IPPR_P2_Formal_EN_20261024_r1_final-val.zip` | 30 full final-val caches plus the same common files |
 | `epoch5.pt` | The single frozen checkpoint; place it at `package2/weights/epoch5.pt` if model execution is needed |
 | `WEIGHTS_SHA256.json` | Checkpoint size and SHA256 |
-| `PUBLICATION_RECEIPT.json` | Verified publication URLs, new team repository commit and remote verification limits, supplied separately with the published release |
 
 Each ZIP extracts into `package2/`. Extract both into the same parent directory. The common files are identical; split manifests use separate names. The frozen SQLite `split` value remains `val`, while the release directory is named `final-val` for clarity.
 
@@ -34,7 +33,7 @@ package2/
   reports/cache_inventory.csv
 ```
 
-Git contains small source, tests, documentation, frozen descriptors and summaries. The selected checkpoint and SQLite caches are distributed through the existing shared Drive folder, not Git. Dataset images, source videos and polygon labels are not included in these handoff packages. Compare download size and SHA256 with the release checksums before use. Archive integrity and remote download verification are separate checks; consult the publication receipt for what was actually verified remotely.
+Git contains small source, tests, documentation, frozen descriptors and summaries. The selected checkpoint and SQLite caches are distributed through the existing shared Drive folder, not Git. Dataset images, source videos and polygon labels are not included in these handoff packages. Compare download size and SHA256 with the release checksums before use. Archive integrity and remote download verification are separate checks.
 
 ## Start with the default readers
 
@@ -94,4 +93,4 @@ The v4 gate remains **IoU >= 0.98 for every candidate**, without mean-based exce
 - [File index](docs/FILE_INDEX.md)
 - [Compact machine-readable summary](reports/release_summary.json), [170-row dev ranking](reports/dev_selection_ranking.csv), [47-cache inventory](reports/cache_inventory.csv)
 
-The original local frozen source snapshot commit is `c221d204dae9d24188c72dd0fa7bd8e8e7313c94`. It is not the new team GitHub publication commit. The latter is identified by the team checkout's `git rev-parse HEAD` and the separately verified publication receipt. Original Chinese reports and historical PASS/FAIL records remain unchanged in the sealed local evidence; this release supplies English derived summaries and its own checksums.
+The original local frozen source snapshot commit is `c221d204dae9d24188c72dd0fa7bd8e8e7313c94`. It is not the new team GitHub publication commit. The latter is identified by the team checkout's `git rev-parse HEAD`.

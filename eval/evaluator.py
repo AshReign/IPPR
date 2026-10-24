@@ -142,12 +142,13 @@ def match_frame(preds: List[dict], gts: List[dict], iou_thr: float = IOU_THR) ->
 
 def scores(tp, fp, fn):
     """P, R, F1, F2 from pooled counts; works on scalars and numpy arrays (the bootstrap).
-    As in the official script: no predictions gives P = 1, no ground truth gives R = 1."""
+    As in the official script: no predictions gives P = 1, no ground truth gives R = 1.
+    F1 uses sklearn's count form, so it matches the official script to the last bit."""
     tp, fp, fn = (np.asarray(x, dtype=np.float64) for x in (tp, fp, fn))
     with np.errstate(divide="ignore", invalid="ignore"):
         p = np.where(tp + fp > 0, tp / (tp + fp), 1.0)
         r = np.where(tp + fn > 0, tp / (tp + fn), 1.0)
-        f1 = np.where(p + r > 0, 2 * p * r / (p + r), 0.0)
+        f1 = np.where(2 * tp + fp + fn > 0, 2 * tp / (2 * tp + fp + fn), 1.0)
         f2 = np.where(p + r > 0, 5 * p * r / (4 * p + r), 0.0)
     return p, r, f1, f2
 

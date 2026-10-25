@@ -1,0 +1,33 @@
+# Portable publication descriptor; original freeze identity is in frozen_release.json.
+checkpoint: weights/epoch5.pt
+checkpoint_sha256: 278ba795436c1299621b68a6f775a4af8b284afcab9c242384abff877a6906ca
+completed_epoch: 6
+t0_confidence: 0.10
+raw_candidate_confidence: 0.10
+confidence_comparison: ">= float32(threshold)"
+imgsz: 640
+batch: 1
+half: false
+retina_masks: true
+rect: false
+nms_iou: 0.7
+max_det: 300
+agnostic_nms: false
+augment: false
+soft_mask_dtype: float16
+cache_schema: p2-video-cache-sqlite-v1
+dev_cache: cache/dev
+final_val_cache: cache/final-val
+timestamp: "(pts - first_pts) * time_base"
+mask_threshold: 0.5
+mask_comparison: ">"
+area_fraction: 0.001
+area_scale: working_resolution
+area_comparison: "1000 * binary_area >= work_height * work_width"
+split_t0_components: false
+order: "descending float32 confidence, ascending original candidate_index on ties"
+encoder: pinned_p5_encode_mask
+coco_category_id: 1
+coco_score: 1.0
+p5_min_score: 0.0
+p5_iou_threshold: 0.5

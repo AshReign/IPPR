@@ -1,0 +1,8 @@
+# Recorded versions from the existing validated environment; no installation was performed.
+# Raw SQLite reader requires only NumPy plus the Python standard library.
+numpy==1.26.4
+# T0/P5 encode reader additionally uses the following packages:
+opencv-python==4.11.0.86
+pandas==2.2.3
+pycocotools==2.0.10
+# GPU training/inference requirements are recorded separately in environment/.

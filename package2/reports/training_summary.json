@@ -1,0 +1,121 @@
+{
+  "schema": "p2-training-release-summary-v1",
+  "source": {
+    "source": "sealed_final/training/p2_measurements.json",
+    "bytes": 10199,
+    "sha256": "189d8774bf954277d846f04d6b04005b58960e6dc953d6c3ec346e75ed62c5e0"
+  },
+  "status": "completed",
+  "completed_epochs": 10,
+  "initial_pretrained_sha256": "55ed65c56c91713d23e8402371c6c49a6fd84f257f7dce452e8d70e41dcbe152",
+  "options": {
+    "imgsz": 640,
+    "batch": 8,
+    "epochs": 30,
+    "patience": 5,
+    "amp": true,
+    "seed": 42,
+    "deterministic": true,
+    "save_period": 1,
+    "workers": 2,
+    "cache": false,
+    "resume": false
+  },
+  "training_images": 12195,
+  "dev_images": 2421,
+  "formal_run_restarted": false,
+  "training_val_alias_means": "The frozen dev image set, not final-val.",
+  "selection_note": "Native early-stop fitness is not the final P5 F2 model choice. The final user-approved model is completed epoch 6, epoch5.pt.",
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_seconds": 239.60612029799995,
+      "train_peak_allocated_bytes": 1443698176,
+      "train_peak_reserved_bytes": 1644167168,
+      "optimizer_steps_cumulative": 826,
+      "accumulate": 3,
+      "amp_scale": 128.0
+    },
+    {
+      "epoch": 2,
+      "train_seconds": 226.917068912,
+      "train_peak_allocated_bytes": 1458055680,
+      "train_peak_reserved_bytes": 2046820352,
+      "optimizer_steps_cumulative": 1174,
+      "accumulate": 6,
+      "amp_scale": 128.0
+    },
+    {
+      "epoch": 3,
+      "train_seconds": 235.75809252500005,
+      "train_peak_allocated_bytes": 1470455296,
+      "train_peak_reserved_bytes": 2046820352,
+      "optimizer_steps_cumulative": 1399,
+      "accumulate": 8,
+      "amp_scale": 128.0
+    },
+    {
+      "epoch": 4,
+      "train_seconds": 225.66957666500002,
+      "train_peak_allocated_bytes": 1466570752,
+      "train_peak_reserved_bytes": 2046820352,
+      "optimizer_steps_cumulative": 1590,
+      "accumulate": 8,
+      "amp_scale": 128.0
+    },
+    {
+      "epoch": 5,
+      "train_seconds": 241.92703051000012,
+      "train_peak_allocated_bytes": 1474313216,
+      "train_peak_reserved_bytes": 2048917504,
+      "optimizer_steps_cumulative": 1780,
+      "accumulate": 8,
+      "amp_scale": 128.0
+    },
+    {
+      "epoch": 6,
+      "train_seconds": 214.25171789299998,
+      "train_peak_allocated_bytes": 1470106112,
+      "train_peak_reserved_bytes": 2055208960,
+      "optimizer_steps_cumulative": 1971,
+      "accumulate": 8,
+      "amp_scale": 128.0
+    },
+    {
+      "epoch": 7,
+      "train_seconds": 230.00347724099993,
+      "train_peak_allocated_bytes": 1463370752,
+      "train_peak_reserved_bytes": 2055208960,
+      "optimizer_steps_cumulative": 2162,
+      "accumulate": 8,
+      "amp_scale": 256.0
+    },
+    {
+      "epoch": 8,
+      "train_seconds": 256.3425881920002,
+      "train_peak_allocated_bytes": 1463525376,
+      "train_peak_reserved_bytes": 2055208960,
+      "optimizer_steps_cumulative": 2352,
+      "accumulate": 8,
+      "amp_scale": 256.0
+    },
+    {
+      "epoch": 9,
+      "train_seconds": 230.16032680199987,
+      "train_peak_allocated_bytes": 1466285056,
+      "train_peak_reserved_bytes": 2057306112,
+      "optimizer_steps_cumulative": 2543,
+      "accumulate": 8,
+      "amp_scale": 256.0
+    },
+    {
+      "epoch": 10,
+      "train_seconds": 227.28189184700022,
+      "train_peak_allocated_bytes": 1460044288,
+      "train_peak_reserved_bytes": 2057306112,
+      "optimizer_steps_cumulative": 2733,
+      "accumulate": 8,
+      "amp_scale": 256.0
+    }
+  ]
+}

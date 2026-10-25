@@ -1,0 +1,32 @@
+{
+  "schema": "p2-english-publication-check-summary-v1",
+  "status": "PASS",
+  "scope": "Existing unit tests and read-only raw/T0 consumer smoke; no inference or selection",
+  "source_summary_sha256": "c3b9ed7a43cc071413228bb1ff9cf64da4fc25138a22ae26f6d23ae9058dc935",
+  "unit_tests_passed": 140,
+  "unit_test_stdout_sha256": "01e0e81d56c356c9486b7203fdf858d4676e217fdfc44143c2a99ea5aef80928",
+  "commands_use_replaceable_paths": true,
+  "runtime": {
+    "python": "3.11.15 (main, May 10 2026, 19:28:18) [Clang 22.1.3 ]",
+    "versions": {
+      "numpy": "1.26.4",
+      "scipy": "1.15.3",
+      "torch": "2.6.0+cu124",
+      "cv2": "4.11.0.86",
+      "pandas": "2.2.3",
+      "pycocotools": "2.0.10"
+    }
+  },
+  "original_dev_cache_unchanged": true,
+  "cache_sha256": "2ac40e0009389e4b12e40f0c2d93f3533c69092403c7e1ecdb9f225efeaefc8c",
+  "raw_candidates": 2,
+  "retained_t0_predictions": 1,
+  "video_id": "RipVIS-031",
+  "frame_idx": 0,
+  "image_id": 2904,
+  "v4_executed": false,
+  "model_inference_executed": false,
+  "ground_truth_loaded": false,
+  "dependency_installation_performed": false,
+  "limitation": "CPU unit tests and one cached-frame consumer check only; not new native, restoration, model-quality, archive or remote-upload validation."
+}

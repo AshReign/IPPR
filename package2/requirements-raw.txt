@@ -1,0 +1,2 @@
+# Default raw-cache reader only.
+numpy==1.26.4

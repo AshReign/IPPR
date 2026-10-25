@@ -1,0 +1,2 @@
+ripvis_root: C:/data/ripvis      # where the dataset was downloaded (use forward slashes)
+cache_root:  C:/data/ripvis_cache

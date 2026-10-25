@@ -1,0 +1,49 @@
+[1/30] RipVIS-015: 180 frames, model 14.1 ms/frame
+[2/30] RipVIS-026: 278 frames, model 14.8 ms/frame
+[3/30] RipVIS-044: 2744 frames, model 13.6 ms/frame
+[4/30] RipVIS-046: 1053 frames, model 12.1 ms/frame
+[5/30] RipVIS-053: 569 frames, model 11.8 ms/frame
+[6/30] RipVIS-059: 266 frames, model 10.9 ms/frame
+[7/30] RipVIS-066: 608 frames, model 11.4 ms/frame
+[8/30] RipVIS-067: 139 frames, model 13.8 ms/frame
+[9/30] RipVIS-072: 62 frames, model 11.7 ms/frame
+[10/30] RipVIS-079: 2271 frames, model 11.2 ms/frame
+[11/30] RipVIS-090: 642 frames, model 13.5 ms/frame
+[12/30] RipVIS-102: 757 frames, model 12.2 ms/frame
+[13/30] RipVIS-108: 2035 frames, model 9.9 ms/frame
+[14/30] RipVIS-109: 657 frames, model 10.3 ms/frame
+[15/30] RipVIS-121: 522 frames, model 13.9 ms/frame
+[16/30] RipVIS-128: 604 frames, model 15.1 ms/frame
+[17/30] RipVIS-129: 2047 frames, model 12.4 ms/frame
+[18/30] RipVIS-133: 476 frames, model 13.4 ms/frame
+[19/30] RipVIS-134: 864 frames, model 12.8 ms/frame
+[20/30] RipVIS-137: 169 frames, model 14.2 ms/frame
+[21/30] RipVIS-143: 1457 frames, model 11.4 ms/frame
+[22/30] RipVIS-144: 782 frames, model 12.0 ms/frame
+[23/30] RipVIS-146: 519 frames, model 13.9 ms/frame
+[24/30] RipVIS-147: 387 frames, model 13.5 ms/frame
+[25/30] RipVIS-NR-004: 581 frames, model 7.9 ms/frame
+[26/30] RipVIS-NR-019: 900 frames, model 10.9 ms/frame
+[27/30] RipVIS-NR-020: 2574 frames, model 10.6 ms/frame
+[28/30] RipVIS-NR-022: 1833 frames, model 11.4 ms/frame
+[29/30] RipVIS-NR-024: 1814 frames, model 11.1 ms/frame
+[30/30] RipVIS-NR-026: 1216 frames, model 11.9 ms/frame
+                                    stage     seconds  frames  ms_per_frame         fps
+                                   decode  251.737287   29006      8.678800  115.223296
+               model (YOLO + copy to CPU)  342.965639   29006     11.823955   84.574070
+           cache read (not in end-to-end)   20.850631   29006      0.718839 1391.132937
+               post-processing T0 (total)  397.787053   29006     13.713958   72.918411
+                           T0 method only   18.353725   29006      0.632756 1580.387595
+  T0 output: upsample + area filter + RLE  379.433327   29006     13.081201   76.445578
+               post-processing T1 (total)  444.513574   29006     15.324884   65.253350
+                           T1 method only   26.881245   29006      0.926748 1079.042269
+  T1 output: upsample + area filter + RLE  417.632329   29006     14.398136   69.453435
+               post-processing T2 (total) 1131.450752   29006     39.007473   25.636114
+                           T2 method only  619.311600   29006     21.351155   46.835874
+  T2 output: upsample + area filter + RLE  512.139152   29006     17.656318   56.636951
+end-to-end T0 (decode + model + T0 total)  992.489979   29006     34.216713   29.225484
+            end-to-end T0, no output step  613.056652   29006     21.135512   47.313735
+end-to-end T1 (decode + model + T1 total) 1039.216501   29006     35.827639   27.911412
+            end-to-end T1, no output step  621.584172   29006     21.429503   46.664637
+end-to-end T2 (decode + model + T2 total) 1726.153678   29006     59.510228   16.803834
+            end-to-end T2, no output step 1214.014526   29006     41.853910   23.892630

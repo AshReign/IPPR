@@ -140,6 +140,19 @@ def match_frame(preds: List[dict], gts: List[dict], iou_thr: float = IOU_THR) ->
     return tp, fp, len(gts) - len(matched)
 
 
+def scores(tp, fp, fn):
+    """P, R, F1, F2 from pooled counts; works on scalars and numpy arrays (the bootstrap).
+    As in the official script: no predictions gives P = 1, no ground truth gives R = 1.
+    F1 uses sklearn's count form, so it matches the official script to the last bit."""
+    tp, fp, fn = (np.asarray(x, dtype=np.float64) for x in (tp, fp, fn))
+    with np.errstate(divide="ignore", invalid="ignore"):
+        p = np.where(tp + fp > 0, tp / (tp + fp), 1.0)
+        r = np.where(tp + fn > 0, tp / (tp + fn), 1.0)
+        f1 = np.where(2 * tp + fp + fn > 0, 2 * tp / (2 * tp + fp + fn), 1.0)
+        f2 = np.where(p + r > 0, 5 * p * r / (4 * p + r), 0.0)
+    return p, r, f1, f2
+
+
 def summarise(per_frame: pd.DataFrame) -> dict:
     """Pooled P, R, F1, F2 and the false-alarm rate.
 
@@ -147,13 +160,10 @@ def summarise(per_frame: pd.DataFrame) -> dict:
     all annotated frames of no-rip videos. In dev and val every frame with no ground truth
     belongs to a no-rip video, so this equals the rate over empty frames."""
     tp, fp, fn = (int(per_frame[c].sum()) for c in ("tp", "fp", "fn"))
-    p = tp / (tp + fp) if tp + fp else 1.0
-    r = tp / (tp + fn) if tp + fn else 1.0
+    p, r, f1, f2 = (float(x) for x in scores(tp, fp, fn))
     no_rip = per_frame[~per_frame.has_rip.astype(bool)]
     return {
-        "precision": p, "recall": r,
-        "f1": 2 * p * r / (p + r) if p + r else 0.0,
-        "f2": 5 * p * r / (4 * p + r) if p + r else 0.0,
+        "precision": p, "recall": r, "f1": f1, "f2": f2,
         "tp": tp, "fp": fp, "fn": fn,
         "false_alarm_rate": float((no_rip.n_pred > 0).mean()) if len(no_rip) else float("nan"),
         "n_frames": len(per_frame), "n_no_rip_frames": len(no_rip),

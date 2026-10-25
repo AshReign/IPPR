@@ -3,8 +3,12 @@
 Usage (from the repo root, with the virtual environment active):
     python -m scripts.check_agreement --cache-dir <P2 delivery folder>
     python -m scripts.check_agreement --cache-dir <P2 delivery folder> --restore-check
+    python -m scripts.check_agreement --split val --pred T0=<t0.json> --pred T1=<t1.json> --pred T2=<t2.json>
 
-For each confidence threshold, builds T0-style predictions from a P2 cache (keep conf >= thr,
+With --pred, it checks finished prediction files instead (the PDF asks for the check to be
+repeated on each final condition's output): each file is scored by both evaluators as is.
+
+Otherwise, for each confidence threshold, builds T0-style predictions from a P2 cache (keep conf >= thr,
 mask = soft > 0.5, cache order, encode_mask to the original resolution, score = 1.0, annotated
 frames only), then scores them with both evaluators. P, R, F1 and F2 must be identical.
 
@@ -97,18 +101,61 @@ def restore_iou(gt, readers):
             "iou_median": float(np.median(ious)), "share_iou_ge_0.98": float((ious >= 0.98).mean())}
 
 
+def compare(preds_path: Path, gt, gt_path: Path, official) -> dict:
+    """Score one prediction file with both evaluators."""
+    preds = json.loads(preds_path.read_text())
+    t = time.perf_counter()
+    ours = summarise(evaluate(preds, gt))
+    run = {"n_pred": len(preds), "ours": ours, "seconds_ours": round(time.perf_counter() - t, 3)}
+    if preds:                         # the official script crashes on an empty prediction list
+        t = time.perf_counter()
+        theirs = official.compute_pr_f1_f2(str(gt_path), str(preds_path), 0.5, 0.0)
+        run.update(official=theirs, seconds_official=round(time.perf_counter() - t, 3),
+                   identical=all(ours[k] == theirs[k] for k in ("precision", "recall", "f1", "f2")))
+    return run
+
+
+def check_final(args, ripvis_root: Path, out: Path):
+    gt = load_gt(args.split, ripvis_root)
+    gt_path = out / f"gt_{args.split}.json"
+    write_gt_subset(gt, gt_path)
+    official = load_official(ripvis_root)
+    log = {"split": args.split, "n_frames": len(gt.frames), "n_gt": int(gt.frames.n_gt.sum()), "runs": []}
+    for item in args.pred:
+        cond, _, path = item.partition("=")
+        run = {"condition": cond, "path": path, **compare(Path(path), gt, gt_path, official)}
+        log["runs"].append(run)
+        print(f"{cond}: {run['n_pred']} preds, F2 ours={run['ours']['f2']:.6f}",
+              f"official={run['official']['f2']:.6f} identical={run['identical']}" if run["n_pred"] else "(no preds)")
+    return log
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cache-dir", required=True, help="extracted P2 delivery (has reader/ and *.sqlite)")
+    ap.add_argument("--cache-dir", help="extracted P2 delivery (has reader/ and *.sqlite)")
     ap.add_argument("--restore-check", action="store_true")
-    ap.add_argument("--log", default=str(REPO / "report" / "logs" / "agreement_pilot.json"))
+    ap.add_argument("--pred", action="append", help="CONDITION=path/to/predictions.json (final outputs)")
+    ap.add_argument("--split", choices=["dev", "val"], default="dev", help="with --pred")
+    ap.add_argument("--log", help="default report/logs/agreement_pilot.json, "
+                                  "or agreement_final_<split>.json with --pred")
     args = ap.parse_args()
+    if not args.pred and not args.cache_dir:
+        ap.error("give --cache-dir or --pred")
 
     from configs import paths
     ripvis_root = Path(paths()["ripvis_root"])
-    cache_dir = Path(args.cache_dir)
     out = REPO / "outputs" / "agreement"
     out.mkdir(parents=True, exist_ok=True)
+
+    if args.pred:
+        log = check_final(args, ripvis_root, out)
+        log_path = Path(args.log or REPO / "report" / "logs" / f"agreement_final_{args.split}.json")
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.write_text(json.dumps(log, indent=2))
+        print("log written to", log_path)
+        return
+
+    cache_dir = Path(args.cache_dir)
 
     readers = open_caches(cache_dir)
     gt = load_gt("dev", ripvis_root, videos=readers)
@@ -121,17 +168,9 @@ def main():
         preds = t0_predictions(gt, readers, thr)
         path = out / f"t0_conf{thr}.json"
         path.write_text(json.dumps(preds))
-        t = time.perf_counter()
-        ours = summarise(evaluate(preds, gt))
-        t_ours = time.perf_counter() - t
-        run = {"conf_thr": thr, "n_pred": len(preds), "ours": ours, "seconds_ours": round(t_ours, 3)}
-        if preds:                     # the official script crashes on an empty prediction list
-            t = time.perf_counter()
-            theirs = official.compute_pr_f1_f2(str(out / "gt.json"), str(path), 0.5, 0.0)
-            run.update(official=theirs, seconds_official=round(time.perf_counter() - t, 3),
-                       identical=all(ours[k] == theirs[k] for k in ("precision", "recall", "f1", "f2")))
+        run = {"conf_thr": thr, **compare(path, gt, out / "gt.json", official)}
         log["runs"].append(run)
-        print(f"conf>={thr}: {len(preds)} preds, F2 ours={ours['f2']:.6f}",
+        print(f"conf>={thr}: {len(preds)} preds, F2 ours={run['ours']['f2']:.6f}",
               f"official={run['official']['f2']:.6f} identical={run['identical']}" if preds else "(no preds)")
 
     if args.restore_check:
@@ -142,9 +181,10 @@ def main():
 
     for r in readers.values():
         r.close()
-    Path(args.log).parent.mkdir(parents=True, exist_ok=True)
-    Path(args.log).write_text(json.dumps(log, indent=2))
-    print("log written to", args.log)
+    log_path = Path(args.log or REPO / "report" / "logs" / "agreement_pilot.json")
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text(json.dumps(log, indent=2))
+    print("log written to", log_path)
 
 
 if __name__ == "__main__":

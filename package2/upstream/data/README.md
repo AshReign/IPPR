@@ -1,0 +1,8 @@
+- fps, sampling rate and annotated-frame counts match the dataset info PDF for every dev and single-rip val video (see `pdf_check.csv`). Sampling rates are 5 Hz or 1 Hz.
+- All 12 single-rip val videos are listed with one rip in the PDF.
+- Max masks per frame differs from the PDF rip count for five dev videos (RipVIS-100, 111, 116, 117, 135): some rips are annotated as several polygons in a frame, and some videos have rips that never appear together. This affects dev stratification only.
+- Same-event overlap could not be verified: the PDF lists source, resolution and annotator but no location or date. Dev videos 071, 087, 111, 117, 126, 135 and 150 have a neighbouring video with the same source, resolution and annotator.
+- No-rip videos are not listed in the PDF.
+- Some file names are not zero-padded as the Readme states (e.g. `RipVIS-035_0005.jpg`); the parser accepts any digit width.
+- Dev is uneven: RipVIS-045 has 755 of ~2,420 dev frames; RipVIS-126, 135, 140 and 150 have fewer than 20 each.
+- Ultralytics loads the data: 2,421 dev images, 2,149 with labels; the other 272 are the three no-rip videos.

@@ -1,0 +1,2 @@
+# CPU tests; use with the tested P2 environment.
+pytest==8.4.2

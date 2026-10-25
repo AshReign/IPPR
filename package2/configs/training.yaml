@@ -1,0 +1,5 @@
+# Portable template. prepare_data.py regenerates machine-local image lists and YAML.
+train: train.txt
+val: dev.txt
+names:
+  0: rip_current

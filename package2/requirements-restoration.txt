@@ -1,0 +1,2 @@
+# Optional v4 raw-field restoration. This does not change the default readers.
+-r requirements-core.txt

@@ -1,0 +1,101 @@
+{
+  "schema": "p2-formal-release-descriptor-v1",
+  "release_version": "IPPR_P2_Formal_EN_20261024_r1",
+  "status": "portable_description_of_previously_frozen_model",
+  "not_original_freeze_bytes": true,
+  "original_freeze_sha256": "6bddf2e07cae81ee2541c8c5bef8b2ad78dbbd698bd207f161f34eee6ae1aa7e",
+  "frozen_source_snapshot_commit": "c221d204dae9d24188c72dd0fa7bd8e8e7313c94",
+  "checkpoint": {
+    "path": "weights/epoch5.pt",
+    "sha256": "278ba795436c1299621b68a6f775a4af8b284afcab9c242384abff877a6906ca",
+    "completed_epoch": 6,
+    "zero_based_epoch": 5
+  },
+  "cache": {
+    "schema": "p2-video-cache-sqlite-v1",
+    "dev_directory": "cache/dev",
+    "final_val_directory": "cache/final-val",
+    "metadata_final_val_split": "val",
+    "raw_candidate_confidence": 0.1,
+    "comparison": ">= float32(0.1)",
+    "dtype": "float16",
+    "format_and_content_unchanged": true
+  },
+  "inference": {
+    "imgsz": 640,
+    "retina_masks": true,
+    "rect": false,
+    "half": false,
+    "conf": 0.1,
+    "iou": 0.7,
+    "max_det": 300,
+    "agnostic_nms": false,
+    "augment": false,
+    "verbose": false,
+    "save": false
+  },
+  "prediction_config": {
+    "inference": {
+      "imgsz": 640,
+      "retina_masks": true,
+      "rect": false,
+      "half": false,
+      "conf": 0.1,
+      "iou": 0.7,
+      "max_det": 300,
+      "agnostic_nms": false,
+      "augment": false,
+      "verbose": false,
+      "save": false
+    },
+    "nms": {
+      "backend": "torchvision.ops.nms",
+      "multi_label": false,
+      "max_nms": 30000,
+      "max_wh": 7680,
+      "max_time_img": 30.0,
+      "rotated": false,
+      "end2end": false,
+      "confidence_dtype": "float32",
+      "confidence_comparison": ">= float32(threshold)",
+      "instance_order": "unchanged torchvision NMS output order, then stable boolean filtering"
+    },
+    "soft_mask_module_sha256": "9021ae722b5e33437e3571c679808b1aae8d2afd90a387f6bfb5ecc9339c101f"
+  },
+  "prediction_config_sha256": "15c93585db246727057e1bbd29b7da68813674b44e3eb01a819d5f890f578d38",
+  "t0": {
+    "confidence": 0.1,
+    "method": "T0 only",
+    "input": "full unpadded aspect-preserving work frame; original P2 v3 float16 probabilities, including save/readback semantics",
+    "binarization": "work_probability > 0.5",
+    "area_fraction": 0.001,
+    "area_scale": "working resolution",
+    "area_stage": "before P5 encode_mask resize; each entire model instance",
+    "area_comparison": "retain when 1000 * work_binary_area >= work_height * work_width",
+    "components": "do not split disconnected T0 regions",
+    "ordering": "descending float32 instance confidence, then original candidate_index ascending on ties",
+    "encode_mask": "pinned P5: >0.5 to float32, INTER_LINEAR to (original_width, original_height), >=0.5 to uint8, Fortran compressed COCO RLE",
+    "category_mapping": "P2 class_id 0 to COCO category_id 1",
+    "coco_score": 1.0,
+    "score_note": "confidence determines filtering and order first; P4 masks_to_results writes score=1.0; instance_conf is retained separately for audit",
+    "p5_min_score": 0.0,
+    "p5_iou_threshold": 0.5,
+    "reuse_gate": "exact previous float16 work SHA plus candidate identity and source hashes; working area cannot be inferred from original RLE"
+  },
+  "output_protocol_sha256": "5a2aac1b206e2a07fc9252a2295f23630790b945742d5295335c8a3af5e9b687",
+  "p1_commit": "704f724146792482359ebaa2235cde5c6a41b059",
+  "p4_commit": "1004e203b7f9e4e3b2f3dcf740cc4983369fde51",
+  "p5_commit": "2fa7e07ab42cceb49ac149a391c05df0dcc63a1a",
+  "p5_evaluator_sha256": "b539ae46869407ffdfce9a8d4582d0a72bd722bdead816453d4cc706ab49f8c7",
+  "output_adapter_sha256": "1a578f1dada74423bb053489a50991f16733a41eaea6903d3c31ac8d3ae1163a",
+  "restoration": {
+    "default_raw_reader_uses_inverse": false,
+    "default_t0_reader_uses_inverse": false,
+    "t0_encoder": "fixed P5 encode_mask",
+    "optional_v4_version": "p2-raw-work-restorer-v4-quantization-interval-v1",
+    "optional_v4_sha256": "e0f8b2e7ef385266b3e9188ba031f3bb49e618051b39975c8223199183f9fa2b",
+    "only_unmodified_raw_model_fields": true,
+    "lossless": false
+  },
+  "note": "This portable descriptor is a new publication artifact, not a replacement for the original frozen.json or a new validation. Its relative paths are download-layout instructions. Original model, parameters, raw cache bytes and source hashes remain unchanged."
+}

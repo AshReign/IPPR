@@ -1,0 +1,14 @@
+{
+  "schema": "p2-dev-selection-protocol-v1",
+  "status": "predeclared_before_P5_scores",
+  "split": "dev",
+  "candidate_checkpoints": "every completed epoch checkpoint, EMA weights, numeric epoch order",
+  "confidence_thresholds": ["0.10", "0.15", "0.20", "0.25", "0.30", "0.35", "0.40", "0.45", "0.50", "0.55", "0.60", "0.65", "0.70", "0.75", "0.80", "0.85", "0.90"],
+  "comparison": "conf >= float32(threshold)",
+  "ranking": ["f2 descending", "recall descending", "precision descending", "completed_epoch ascending", "threshold ascending"],
+  "metric_ties": "exact equality of supplied full-precision serialized P5 values; never rounded display values",
+  "metric_definitions": "provided by the versioned P5 evaluator; aggregation and matching not reimplemented in P2",
+  "raw_candidate_retention": "fixed NMS at inclusive 0.1; preserve row order and empty masks; no area/component/final T0 filtering at collection",
+  "output_adapter": "pending agreed P4/P5 0.1% area, components, RLE and score=1.0 ordering rules",
+  "final_val": "never used for selection; export only after freeze and dev mask-validation gates"
+}

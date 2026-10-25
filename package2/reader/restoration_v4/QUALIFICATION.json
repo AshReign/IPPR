@@ -1,0 +1,37 @@
+{
+  "schema": "p2-optional-v4-publication-qualification-summary-v1",
+  "new_publication_summary_not_original_qualification_bytes": true,
+  "source_qualification_sha256": "32604063458dc972691e973ca060a5027826bd02bd5adfbf4894c1a8f7c1ffb0",
+  "original_qualification_status": "PASS",
+  "original_freeze_sha256": "6bddf2e07cae81ee2541c8c5bef8b2ad78dbbd698bd207f161f34eee6ae1aa7e",
+  "original_v3_actual_video_validation_status": "FAIL",
+  "original_v3_actual_video_validation_sha256": "7ef781e0545cec95880e9868ce66872be0ffc70978c59c043991a38cd56b71e2",
+  "v4_restorer_relative": "reader/restoration_v4/restore.py",
+  "v4_restorer_sha256": "e0f8b2e7ef385266b3e9188ba031f3bb49e618051b39975c8223199183f9fa2b",
+  "qualified_gate_minimum_instance_iou": 0.98,
+  "qualified_sample_frames": 100,
+  "qualified_samples_disjoint": true,
+  "reports": {
+    "base50": {
+      "sha256": "8a28ff4539e2da4d1762b6f04eaa22d7993ce8cc124ac2d7d35519927319eb00",
+      "sample_role": "base50",
+      "annotated_dev_frames": 50,
+      "instance_count": 149,
+      "min_instance_iou": 0.9938299609835768,
+      "completed_utc": "2026-10-24T03:00:37.407568+00:00"
+    },
+    "holdout50": {
+      "sha256": "a08fd3b501ca9c471529f2b8fa359b623f19f23ea954577af0d08973384d5ad6",
+      "sample_role": "holdout50",
+      "annotated_dev_frames": 50,
+      "instance_count": 149,
+      "min_instance_iou": 0.9936682725395733,
+      "completed_utc": "2026-10-24T03:04:39.527774+00:00"
+    }
+  },
+  "input_scope": "Unmodified original model full unpadded working probability fields; original box and transform required. Never T1/TCA modified fields.",
+  "default_raw_and_t0_readers_use_v4": false,
+  "lossless_or_universal_recovery_claimed": false,
+  "source_relocation": "The unchanged adapter verifies source hashes and sets BASE_SOURCE in memory to adjacent soft_masks_v3.py. Original restorer bytes are preserved.",
+  "release_action": "Original native and qualification validation results are reported here; CPU consumer checks are separate."
+}

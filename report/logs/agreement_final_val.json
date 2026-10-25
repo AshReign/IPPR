@@ -1,0 +1,85 @@
+{
+  "split": "val",
+  "n_frames": 3682,
+  "n_gt": 3784,
+  "runs": [
+    {
+      "condition": "T0",
+      "path": "D:/data/final/val_frozen_20261024/val_frozen_20261024/val_T0.json",
+      "n_pred": 6014,
+      "ours": {
+        "precision": 0.3077818423678084,
+        "recall": 0.4891649048625793,
+        "f1": 0.37783221065523576,
+        "f2": 0.4375886524822696,
+        "tp": 1851,
+        "fp": 4163,
+        "fn": 1933,
+        "false_alarm_rate": 0.39986559139784944,
+        "n_frames": 3682,
+        "n_no_rip_frames": 1488
+      },
+      "seconds_ours": 0.502,
+      "official": {
+        "precision": 0.3077818423678084,
+        "recall": 0.4891649048625793,
+        "f1": 0.37783221065523576,
+        "f2": 0.4375886524822696
+      },
+      "seconds_official": 217.299,
+      "identical": true
+    },
+    {
+      "condition": "T1",
+      "path": "D:/data/final/val_frozen_20261024/val_frozen_20261024/val_T1.json",
+      "n_pred": 5227,
+      "ours": {
+        "precision": 0.3292519609718768,
+        "recall": 0.4548097251585624,
+        "f1": 0.3819775829541671,
+        "f2": 0.4225801699160242,
+        "tp": 1721,
+        "fp": 3506,
+        "fn": 2063,
+        "false_alarm_rate": 0.4583333333333333,
+        "n_frames": 3682,
+        "n_no_rip_frames": 1488
+      },
+      "seconds_ours": 0.418,
+      "official": {
+        "precision": 0.3292519609718768,
+        "recall": 0.4548097251585624,
+        "f1": 0.3819775829541671,
+        "f2": 0.4225801699160242
+      },
+      "seconds_official": 165.989,
+      "identical": true
+    },
+    {
+      "condition": "T2",
+      "path": "D:/data/final/val_frozen_20261024/val_frozen_20261024/val_T2.json",
+      "n_pred": 8743,
+      "ours": {
+        "precision": 0.2145716573258607,
+        "recall": 0.49577167019027485,
+        "f1": 0.2995130518080945,
+        "f2": 0.39281376942083,
+        "tp": 1876,
+        "fp": 6867,
+        "fn": 1908,
+        "false_alarm_rate": 0.35551075268817206,
+        "n_frames": 3682,
+        "n_no_rip_frames": 1488
+      },
+      "seconds_ours": 0.595,
+      "official": {
+        "precision": 0.2145716573258607,
+        "recall": 0.49577167019027485,
+        "f1": 0.2995130518080945,
+        "f2": 0.39281376942083
+      },
+      "seconds_official": 277.064,
+      "identical": true
+    }
+  ]
+}

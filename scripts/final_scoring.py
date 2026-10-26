@@ -2,7 +2,7 @@
 
 Usage (from the repo root, with the virtual environment active):
     python -m scripts.final_scoring --split val --pred T0=<t0.json> --pred T1=<t1.json> --pred T2=<t2.json>
-    (optional) --fps T0=30.1 --fps T1=29.8 --fps T2=25.0     # from Package 6
+    (optional) --fps T0=30.1 --fps T1=29.8 --fps T2=25.0     # from scripts/measure_fps.py (report/logs/fps_val)
 
 Run it on val ONCE, after all three configs are frozen. Use --split dev for dry runs.
 
@@ -57,7 +57,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", choices=["dev", "val"], required=True)
     ap.add_argument("--pred", action="append", required=True, help="CONDITION=path/to/predictions.json")
-    ap.add_argument("--fps", action="append", help="CONDITION=frames per second (Package 6)")
+    ap.add_argument("--fps", action="append", help="CONDITION=frames per second (scripts/measure_fps.py)")
     ap.add_argument("--out", help="output folder (default outputs/final_<split>)")
     ap.add_argument("--resamples", type=int, default=1000)
     args = ap.parse_args()

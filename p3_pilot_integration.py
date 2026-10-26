@@ -1,4 +1,4 @@
-"""P3 ↔ P2 pilot-cache integration. Run from RipCurrent_A2 project root.
+"""P3 ↔ P2 pilot-cache integration. Run from the repo root.
 
 This is an integration smoke test, NOT a P5 scoring/export pipeline.
 Uses every decoded frame and original PTS-based timestamps.

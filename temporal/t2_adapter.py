@@ -1,15 +1,15 @@
 """T2: calls Package 3's ``run_tca`` and puts its output in the shared format.
 
-Package 3's interface (branch ``package3-tca``, temporal/tca.py)::
+Package 3's interface (temporal/tca.py)::
 
     run_tca(frames, params) -> list of COCO-like results
     frames: iterable of {"t_sec", "detections", "annotated", "image_id"},
             one per processed frame, with every candidate's soft mask
     results: uncompressed RLE at the working resolution, score 1.0
 
-The adapter feeds it the same candidate pool T0 and T1 see, then applies the
-upsamples to the original resolution and applies the shared 0.1 % area filter there, so all three
-conditions reach the evaluator in exactly the same form.
+The adapter feeds it the same candidate pool T0 and T1 see, then upsamples
+the output to the original resolution and applies the shared 0.1 % area filter
+there, so all three conditions reach the evaluator in exactly the same form.
 """
 
 from __future__ import annotations

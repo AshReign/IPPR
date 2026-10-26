@@ -1,17 +1,15 @@
-"""INTERIM evaluator used only for dev tuning until Package 5 delivers theirs.
+"""INTERIM evaluator, written before Package 5's evaluator existed. Superseded.
 
-Package 4 needs P/R/F2 on the dev videos to tune T1 and T2, but the official
-evaluator is Package 5's job. This module implements the matching rule as
-described in the task packages so tuning can be built and tested now:
+Dev tuning and final scoring now use Package 5's eval/evaluator.py (through
+temporal/scoring.py). This module is kept only for ``parse_file_name`` (used by
+temporal/scoring.py) and ``match_image`` (used by the unit tests). It
+implements the matching rule as described in the task packages:
 
   * predictions are processed in order (all scores are 1.0, so input order);
   * each prediction takes its highest-IoU ground-truth mask and is a TP if
     IoU >= 0.5 and that mask is still unmatched;
   * every other prediction is an FP (including all predictions on frames with
     no ground truth); every unmatched ground-truth mask is an FN.
-
-Before the dev search is frozen, replace ``score_video`` with Package 5's
-evaluator, or confirm the two give identical TP/FP/FN on the pilot cache.
 """
 
 from __future__ import annotations

@@ -1,7 +1,8 @@
 """T0: raw per-frame predictions, the baseline with no temporal processing.
 
-Package 4, step 1: keep instances with ``conf >= conf_thr`` (the threshold
-chosen on dev by Package 2) and binarise each soft mask at 0.5.
+Package 4, step 1: keep instances with ``conf >= conf_thr`` (tuned on dev by
+scripts/tune_dev.py, frozen in configs/frozen/t0.yaml) and binarise each soft
+mask at 0.5.
 """
 
 from __future__ import annotations

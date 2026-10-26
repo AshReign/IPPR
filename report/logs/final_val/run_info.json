@@ -1,0 +1,34 @@
+{
+  "split": "val",
+  "commit": "580ea0ce6865889d3d970c54ab28dc861acefc51",
+  "seed": 42,
+  "resamples": 1000,
+  "single_rip_videos": [
+    "RipVIS-015",
+    "RipVIS-044",
+    "RipVIS-053",
+    "RipVIS-059",
+    "RipVIS-066",
+    "RipVIS-072",
+    "RipVIS-121",
+    "RipVIS-128",
+    "RipVIS-129",
+    "RipVIS-137",
+    "RipVIS-146",
+    "RipVIS-147"
+  ],
+  "predictions": {
+    "T0": {
+      "path": "D:/data/final/val_frozen_20261024/val_frozen_20261024/val_T0.json",
+      "sha256": "d962bcb18e63b813b8a2404a6e52bda2aa4a7b601d862f2cfa0e13b2e069fc53"
+    },
+    "T1": {
+      "path": "D:/data/final/val_frozen_20261024/val_frozen_20261024/val_T1.json",
+      "sha256": "b200a574722be38c6184796c098ffdf28ab44cbdda9d482ebf2ebf9cf42d9153"
+    },
+    "T2": {
+      "path": "D:/data/final/val_frozen_20261024/val_frozen_20261024/val_T2.json",
+      "sha256": "bf9418fd3a7a091211006ca0a03678337490258a038acfed0f62fc1656acf6b7"
+    }
+  }
+}

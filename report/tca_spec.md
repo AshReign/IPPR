@@ -18,7 +18,7 @@ Implementation: `temporal/tca.py`
 - Hysteresis: Use high and low thresholds to stabilise output masks.
 - Persistence: Control activation and disappearance using presence
   and absence durations.
-- Timeout: Remove inactive tracks after the configured timeout.
+- Timeout: Mark timed-out tracks as inactive; exclude them from future matching and output.
 - Output: Temporally processed segmentation predictions.
 
 ## Frozen T2 Settings
